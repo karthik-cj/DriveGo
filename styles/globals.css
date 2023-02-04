@@ -1,0 +1,630 @@
+  @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+  body {
+    padding: 0;
+    margin: 0;
+
+    /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
+    font-family: "Josefin Sans";
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+    color: white;
+  }
+
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+    .loginBaground{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      font-family: "Josefin Sans";
+      background: linear-gradient(#141e30, #243b55);
+    }
+
+    .login-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      padding: 40px;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,.5);
+      box-sizing: border-box;
+      box-shadow: 0 15px 25px rgba(0,0,0,.6);
+      border-radius: 10px;
+    }
+    
+    .login-box h2 {
+      margin: 0 0 30px;
+      letter-spacing: 1.8px;
+      padding: 0;
+      color: #fff;
+      text-align: center;
+    }
+    
+    .login-box .user-box {
+      position: relative;
+    }
+    
+    .login-box .user-box input {
+      letter-spacing: 0.8px;
+      width: 100%;
+      padding: 10px 0;
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 30px;
+      border: none;
+      border-bottom: 1px solid #fff;
+      outline: none;
+      background: transparent;
+    }
+    
+    .login-box .user-box input::placeholder {
+      font-family: "Josefin Sans";
+      color: #03e9f4;
+    }
+
+    .login-box form a {
+      position: relative;
+      display: inline-block;
+      padding: 10px 20px;
+      color: #03e9f4;
+      font-size: 16px;
+      text-decoration: none;
+      text-transform: uppercase;
+      overflow: hidden;
+      transition: .5s;
+      margin-top: 40px;
+      letter-spacing: 4px
+    }
+    
+    .login-box a:hover {
+      background: #03e9f4;
+      color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #03e9f4,
+                  0 0 25px #03e9f4,
+                  0 0 50px #03e9f4,
+                  0 0 100px #03e9f4;
+    }
+    
+    .login-box a span {
+      position: absolute;
+      display: block;
+    }
+    
+    .login-box a span:nth-child(1) {
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #03e9f4);
+      animation: btn-anim1 1s linear infinite;
+    }
+    
+    @keyframes btn-anim1 {
+      0% {
+        left: -100%;
+      }
+      50%,100% {
+        left: 100%;
+      }
+    }
+    
+    .login-box a span:nth-child(2) {
+      top: -100%;
+      right: 0;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, #03e9f4);
+      animation: btn-anim2 1s linear infinite;
+      animation-delay: .25s
+    }
+    
+    @keyframes btn-anim2 {
+      0% {
+        top: -100%;
+      }
+      50%,100% {
+        top: 100%;
+      }
+    }
+    
+    .login-box a span:nth-child(3) {
+      bottom: 0;
+      right: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(270deg, transparent, #03e9f4);
+      animation: btn-anim3 1s linear infinite;
+      animation-delay: .5s
+    }
+    
+    @keyframes btn-anim3 {
+      0% {
+        right: -100%;
+      }
+      50%,100% {
+        right: 100%;
+      }
+    }
+    
+    .login-box a span:nth-child(4) {
+      bottom: -100%;
+      left: 0;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(360deg, transparent, #03e9f4);
+      animation: btn-anim4 1s linear infinite;
+      animation-delay: .75s
+    }
+    
+    @keyframes btn-anim4 {
+      0% {
+        bottom: -100%;
+      }
+      50%,100% {
+        bottom: 100%;
+      }
+    }
+    
+
+    #navbar{
+      display: flex;
+      justify-content: space-between;
+      background: rgba(0, 0, 0);
+      height: 50px;
+      width: 100%;
+    }
+
+    .navlogo{
+      font-family: "Josefin Sans";
+      margin-left: 150px;
+      position: relative;
+      margin-top: 16px;
+      text-align: center;
+      font-size: 25px;
+      font-weight: 500px;
+    }
+
+    .navlink{
+      font-family: "Josefin Sans";
+      position: relative;
+      margin-top: 18px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 500px;
+    }
+
+  .pickup_destination_box {
+      position: absolute;
+      top: 360px;
+      left: 21%;
+      width: 25%;
+      margin-top: 24px;
+      height: 90%;
+      padding: 20px;
+      padding-top: 0px;
+      transform: translate(-50%, -50%);
+      background: white;
+      box-sizing: border-box;
+      border-radius: 10px;
+    }
+    
+    .pickup_destination_box input {
+      font-family: "Josefin Sans";
+      outline: 0;
+      background: #efefee;
+      width: 100%;
+      margin-bottom: 15px;
+      border: 0;
+      border-radius: 10px;
+      padding: 15px;
+      padding-left: 60px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    .pickup_destination_text{
+      margin-bottom: 15px;
+      font-family: "Josefin Sans";
+      color: #000;
+      font-size: 40px;
+    }
+
+    .pickup_destination_box input:focus {
+      border: 2px solid black;
+  }
+
+  .applyButton{
+    font-weight: bold;
+    font-family: "Josefin Sans";
+    font-size: 16px;
+    color: rgba(0, 0, 0);
+    text-align: center;
+    background-color: #efefee;
+    border-radius: 30px;
+    border-style: none;
+    padding-top: 5px;
+    width: 130px;
+    transition: all 300ms;
+    cursor: pointer;
+    height: 35px;
+  }
+
+  .applyButton:hover{
+    background-color: #cacac8;
+  }
+
+  .duration{
+    position: relative;
+    bottom: 51px;
+    left: 138px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 30px;
+    border-style: none;
+    color: black;
+    font-family: "Josefin Sans";
+    background: #efefee;
+    width: 205px;
+    padding-top: 12px;
+    height: 35px;
+  }
+
+  .distance{
+    position: relative;
+    bottom: 102px;
+    left: 252px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 30px;
+    color: black;
+    font-family: "Josefin Sans";
+    background: #efefee;
+    width: 90px;
+    padding-top: 12px;
+    height: 35px;
+  }
+
+  .circle{
+    position: absolute;
+    left: 47px;
+    top: 144px;
+    border-radius: 50%;
+    width: 7px;
+    height: 7px;
+    border-style: solid;
+    border-width: 3px;
+    border-color:  black;
+  }
+
+  .square{
+    position: absolute;
+    left: 47px;
+    top: 207px;
+    width: 7px;
+    height: 7px;
+    border-style: solid;
+    border-width: 3px;
+    border-color:  black;
+  }
+
+  .line{
+    position: absolute;
+    left: 49.7px;
+    top: 156px;
+    border-left:2px solid black;
+    height: 45px;
+    width: 2px;
+  }
+
+
+  #profile{
+      position: absolute;
+      background: #AEE2FF;
+      top: 50%;
+      left: 43%;
+      width: 500px;
+      margin-top: 24px;
+      height: 580px;
+      border-radius: 20px;
+      padding: 20px;
+      transform: translate(-50%, -50%);
+  }
+
+  .image{
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    background: white;
+  }
+
+  .image img{
+    position: relative;
+    left: 9.5px;
+    top: 7px;
+    -webkit-filter: invert(100%); 
+    filter: invert(100%);
+  }
+
+  .profile_name{
+    color: black;
+    font-family: "Josefin Sans";
+    position: absolute;
+    top: 12px;
+    left: 100px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500px;
+  }
+
+  .profile_no{
+    color: black;
+    font-family: "Josefin Sans";
+    position: absolute;
+    top: 42px;
+    left: 100px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 100;
+  }
+
+  #profile label{
+    color: black;
+    font-family: "Josefin Sans";
+    font-size: large;
+    padding-left: 16px;
+  }
+
+  #profile p{
+    color: black;
+    font-family: "Josefin Sans";
+    width: 550px;
+    height: 40px;
+    font-size: larger;
+    padding: 15px;
+    padding-top: 8px;
+    margin-top: 0px;
+    border-radius: 10px;
+  }
+
+  .profile_element{
+    position: absolute;
+    left: 120px;
+    top: 10px;
+    margin-top: 100px;
+    color: black;
+  }
+
+  .profile_element h3{
+    color: black;
+    font-family: "Josefin Sans";
+    text-align: left;
+    font-size: 20px;
+    font-weight: lighter;
+    margin: 0px;
+    padding: 13px;
+    padding-top: 15px;
+  }
+
+  .profile_element div{
+    border-radius: 10px;
+    width: 250px;
+    margin: 8px;
+  }
+
+  .profile_element div:hover{
+    background:#cecece ;
+    cursor: pointer;
+  }
+
+  .active{
+    background:#cecece ;
+  }
+
+  .logout {
+    background-color: white;
+    border-radius: 10px;
+    border-width: 0;
+    width: 120px;
+    color: #333333;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Josefin Sans";
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    margin: 0;
+    margin-left: 15px;
+    padding: 10px;
+    padding-top: 12px;
+    text-align: center;
+    transition: all 200ms;
+    vertical-align: baseline;
+    white-space: nowrap;
+    touch-action: manipulation;
+  }
+
+  .logout:hover{
+    background-color: #F55050;
+  }
+
+  #wallet{
+    position: absolute;
+    font-family:"Josefin Sans" ;
+    color: black;
+    background: #dbd5e7;
+    top: 20%;
+    left: 52.5%;
+    width: 800px;
+    margin-top: 24px;
+    height: 180px;
+    border-radius: 20px;
+    padding: 25px;
+    padding-left: 40px;
+    padding-top: 5px;
+    transform: translate(-50%, -50%);
+  }
+
+  .addFund {
+    background-color: #000000;
+    border-radius: 20px;
+    border-width: 0;
+    height: 50px;
+    width: 120px;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Josefin Sans";
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+    margin: 0;
+    padding: 10px;
+    padding-top: 12px;
+    text-align: center;
+    transition: all 200ms;
+    vertical-align: baseline;
+    white-space: nowrap;
+    touch-action: manipulation;
+  }
+
+  .walletHeading{
+    color: black;
+    position: absolute;
+    font-family: "Josefin Sans";
+    left: 409px;
+    top: 280px;
+  }
+
+  #transactions{
+    position: absolute;
+    font-family:"Josefin Sans" ;
+    color: rgb(255, 255, 255);
+    background: #FDEBED;
+    top: 70%;
+    left: 52.5%;
+    width: 800px;
+    margin-top: 24px;
+    height: 360px;
+    border-radius: 20px;
+    padding-top: 17px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 17px;
+    transform: translate(-50%, -50%);
+    overflow-y: scroll;
+    scrollbar-width: none;
+  }
+
+  #transactions::-webkit-scrollbar {
+    display: none;
+  }
+
+  #transactions div {
+    font-size: 18px;
+    padding-left: 30px;
+    margin-bottom: 27px;
+    font-weight: bold;
+    background: white;
+    border-radius: 20px;
+    color: black;
+  }
+
+  #mapbox{
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+  }
+
+  #map{
+    height: 100%;
+  }
+
+  .ride-select-box{
+    position: absolute;
+    top: 349.5px;
+    left: 131px;
+    width: 25%;
+    margin: 0px;
+    font-family: "Josefin Sans";
+  }
+
+  .car-image{
+    cursor: pointer;
+    padding: 0px;
+    padding-left: 8px;
+    padding-right: 10px;
+    border-radius: 10px;
+    display: flex;
+    height: 75px;
+    margin: 10px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .car-image:hover{
+    background: #efefee;
+  }
+
+ .box:last-child{
+  margin-left: auto;
+ }
+
+ .tripHeading{
+  color: black;
+  position: absolute;
+  font-family: "Josefin Sans";
+  left: 409px;
+  top: 75px;
+}
+
+ .select_month{
+  font-family: "Josefin Sans";
+  font-size: 19px;
+  position: absolute;
+  top: 150px;
+  background: #cecece;
+  height: 40px;
+  width: 90px;
+  border-radius: 25px;
+ }
+
+ .select_month p{
+  font-size: 16px;
+  text-align: center;
+  position: relative;
+  bottom: 3px;
+ }
+
+ #tripBox{
+  position: absolute;
+  font-family:"Josefin Sans" ;
+  color: rgb(255, 255, 255);
+  background: #ceeaf7;
+  top: 60%;
+  left: 52.5%;
+  width: 800px;
+  margin-top: 24px;
+  height: 470px;
+  border-radius: 20px;
+  padding: 25px;
+  padding-left: 40px;
+  padding-top: 5px;
+  transform: translate(-50%, -50%);
+}
