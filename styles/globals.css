@@ -515,17 +515,18 @@
     position: absolute;
     font-family:"Josefin Sans" ;
     color: rgb(255, 255, 255);
-    background: #FDEBED;
+    /* background: #FDEBED; */
     top: 70%;
     left: 52.5%;
     width: 800px;
     margin-top: 24px;
     height: 360px;
     border-radius: 20px;
-    padding-top: 17px;
+    /* padding-top: 17px;
     padding-left: 30px;
     padding-right: 30px;
-    padding-bottom: 17px;
+    padding-bottom: 17px; */
+    padding: 0px;
     transform: translate(-50%, -50%);
     overflow-y: scroll;
     scrollbar-width: none;
@@ -540,10 +541,11 @@
     padding-left: 30px;
     margin-bottom: 27px;
     font-weight: bold;
-    background: white;
+    background: #FDEBED;
     border-radius: 20px;
     color: black;
   }
+
 
   #mapbox{
     position: absolute;
