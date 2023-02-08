@@ -4,6 +4,7 @@ import { useAccount, useConnect, useSignMessage, useDisconnect } from "wagmi";
 import { useRouter } from "next/router";
 import { useAuthRequestChallengeEvm } from "@moralisweb3/next";
 import isOnline from "is-online";
+import Head from "next/head";
 
 function SignIn() {
   const { connectAsync } = useConnect();
@@ -47,6 +48,9 @@ function SignIn() {
 
   return (
     <div className="loginBaground">
+      <Head>
+        <title>DriveGo | Authenticate</title>
+      </Head>
       <div className="login-box">
         <h2>Authenticate</h2>
         <form>

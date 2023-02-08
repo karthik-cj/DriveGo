@@ -211,7 +211,7 @@
       position: absolute;
       top: 360px;
       left: 21%;
-      width: 25%;
+      width: 26%;
       margin-top: 24px;
       height: 90%;
       padding: 20px;
@@ -597,14 +597,26 @@
 }
 
  .select_month{
+  cursor: pointer;
   font-family: "Josefin Sans";
   font-size: 19px;
   position: absolute;
+  color: black;
   top: 150px;
-  background: #cecece;
+  background: #efefee;
+  transition: all 300ms;
   height: 40px;
   width: 90px;
   border-radius: 25px;
+ }
+
+#active {
+  background: black;
+  color: white;
+}
+
+ .select_month:hover{
+  background: #cecece;
  }
 
  .select_month p{

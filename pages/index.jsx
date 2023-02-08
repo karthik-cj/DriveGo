@@ -3,6 +3,7 @@ import Map from "../components/Map";
 import PickupDestinationBox from "../components/PickupDestinationBox";
 import { getSession } from "next-auth/react";
 import RideSelector from "../components/RideSelector";
+import Head from "next/head";
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
@@ -24,6 +25,9 @@ export async function getServerSideProps(context) {
 function Rider() {
   return (
     <div>
+      <Head>
+        <title>DriveGo | Ride Now</title>
+      </Head>
       <Navbar />
       <PickupDestinationBox />
       <RideSelector />

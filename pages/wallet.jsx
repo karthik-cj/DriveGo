@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import ProfileElement from "../components/ProfileElement";
 import { getSession } from "next-auth/react";
+import Head from "next/head";
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
@@ -48,6 +49,9 @@ export async function getServerSideProps(context) {
 const Wallet = ({ user, walletTrans }) => {
   return (
     <div>
+      <Head>
+        <title>DriveGo | Wallet</title>
+      </Head>
       <Navbar />
       <ProfileElement />
       <div id="wallet">

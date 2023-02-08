@@ -34,7 +34,7 @@ const RideSelector = () => {
   let newDistance = distance.slice(0, -3);
   return (
     <div>
-      {duration && (
+      {duration && distance && (
         <div style={{ color: "black" }} className="ride-select-box">
           <div>
             {carList.map((car, index) => (
@@ -64,7 +64,6 @@ const RideSelector = () => {
                       left: "13px",
                     }}
                   >
-                    {/* {((basePrice / 10 ** 5) * car.priceMultiplier).toFixed(5)} */}
                     {(
                       (car.priceMultiplier * Number(newDistance)) /
                       100000

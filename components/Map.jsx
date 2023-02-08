@@ -37,7 +37,6 @@ const Map = () => {
         destination: dropoff,
         travelMode: google.maps.TravelMode.DRIVING,
       });
-
       setDirectionsResponse(results);
       setDistance(results.routes[0].legs[0].distance.text);
       setDuration(results.routes[0].legs[0].duration.text);

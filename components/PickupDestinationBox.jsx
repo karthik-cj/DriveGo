@@ -1,4 +1,4 @@
-import { useRef, useContext, useState } from "react";
+import { useRef, useContext } from "react";
 import { DriveGoContext } from "../context/DriveGoContext";
 import { Autocomplete, LoadScript } from "@react-google-maps/api";
 
@@ -12,28 +12,8 @@ const PickupDestinationBox = () => {
   const pickupText = useRef("");
   const pickupRef = useRef("");
   const dropoffRef = useRef("");
-  const [buttonText, setButtonText] = useState("Find Ride");
 
   const updateInput = () => {
-    if (
-      buttonText === "Find Ride" &&
-      pickupRef.current.value != "" &&
-      dropoffRef.current.value != ""
-    ) {
-      setButtonText("Clear");
-    } else {
-      setButtonText("Find Ride");
-    }
-
-    if (
-      buttonText === "Clear" &&
-      pickupRef.current.value != "" &&
-      dropoffRef.current.value != ""
-    ) {
-      pickupRef.current.value = "";
-      dropoffRef.current.value = "";
-    }
-
     const pickupValue = pickupRef.current.value;
     const dropoffValue = dropoffRef.current.value;
     setPickup(pickupValue);
@@ -74,9 +54,9 @@ const PickupDestinationBox = () => {
           />
         </Autocomplete>
         <button className="applyButton" onClick={updateInput}>
-          {buttonText}
+          Find Ride
         </button>
-        {dropoffRef.current.value && pickupRef.current.value && (
+        {duration && distance && (
           <p className="duration">
             {duration} | {distance}
           </p>
