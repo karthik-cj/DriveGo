@@ -1,4 +1,5 @@
   @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes');
   body {
     padding: 0;
     margin: 0;
@@ -90,6 +91,7 @@
     }
     
     .login-box a:hover {
+      cursor: pointer;
       background: #03e9f4;
       color: #fff;
       border-radius: 5px;
@@ -211,7 +213,7 @@
       position: absolute;
       top: 360px;
       left: 21%;
-      width: 26%;
+      width: 27%;
       margin-top: 24px;
       height: 90%;
       padding: 20px;
@@ -641,4 +643,43 @@
   padding-left: 40px;
   padding-top: 5px;
   transform: translate(-50%, -50%);
+}
+
+.aboutHeading {
+  font-family: "Great Vibes";
+  font-size: 50px;
+  color: black;
+  position: absolute;
+  top: 0px;
+  left: 260px;
+  width: 600px;
+  height: 100px;
+  margin: 30px;
+}
+
+.aboutText {
+  letter-spacing: 3px;
+  font-family: "Great Vibes";
+  border-radius: 20px;
+  text-align: left;
+  position: absolute;
+  top: 185px;
+  left: 380px;
+  font-size: 30px;
+  color: black;
+  width: 600px;
+  height: 400px;
+  font-weight: bold;
+  margin: 30px;
+}
+
+
+.aboutText::-webkit-scrollbar {
+  display: none;
+}
+
+.aboutImg {
+  position: absolute;
+  top: 180px;
+  left: 980px;
 }

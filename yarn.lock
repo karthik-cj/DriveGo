@@ -1703,12 +1703,7 @@
   "resolved" "https://registry.npmjs.org/cookie-signature/-/cookie-signature-1.0.6.tgz"
   "version" "1.0.6"
 
-"cookie@^0.4.1":
-  "integrity" "sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA=="
-  "resolved" "https://registry.npmjs.org/cookie/-/cookie-0.4.2.tgz"
-  "version" "0.4.2"
-
-"cookie@0.5.0":
+"cookie@^0.5.0", "cookie@0.5.0":
   "integrity" "sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw=="
   "resolved" "https://registry.npmjs.org/cookie/-/cookie-0.5.0.tgz"
   "version" "0.5.0"
@@ -2967,10 +2962,10 @@
     "uuid" "^8.3.2"
     "ws" "^7.4.5"
 
-"jose@^4.1.4", "jose@^4.3.7":
-  "integrity" "sha512-7rySkpW78d8LBp4YU70Wb7+OTgE3OwAALNVZxhoIhp4Kscp+p/fBkdpxGAMKxvCAMV4QfXBU9m6l9nX/vGwd2g=="
-  "resolved" "https://registry.npmjs.org/jose/-/jose-4.8.3.tgz"
-  "version" "4.8.3"
+"jose@^4.10.0", "jose@^4.9.3":
+  "integrity" "sha512-94FdcR8felat4vaTJyL/WVdtlWLlsnLMZP8v+A0Vru18K3bQ22vn7TtpVh3JlgBFNIlYOUlGqwp/MjRPOnIyCQ=="
+  "resolved" "https://registry.npmjs.org/jose/-/jose-4.11.4.tgz"
+  "version" "4.11.4"
 
 "js-sha3@^0.5.7":
   "integrity" "sha512-GII20kjaPX0zJ8wzkTbNDYMY7msuZcTWk8S5UOh6806Jq/wz1J8/bnr8uGU0DAUmYDjj2Mr4X1cW8v/GLYnR+g=="
@@ -3348,14 +3343,14 @@
   "version" "0.6.3"
 
 "next-auth@^4.10.3":
-  "integrity" "sha512-7zc4aXYc/EEln7Pkcsn21V1IevaTZsMLJwapfbnKA4+JY0+jFzWbt5p/ljugesGIrN4VOZhpZIw50EaFZyghJQ=="
-  "resolved" "https://registry.npmjs.org/next-auth/-/next-auth-4.10.3.tgz"
-  "version" "4.10.3"
+  "integrity" "sha512-6V2YG3IJQVhgCAH7mvT3yopTW92gMdUrcwGX7NQ0dCreT/+axGua/JmVdarjec0C/oJukKpIYRgjMlV+L5ZQOQ=="
+  "resolved" "https://registry.npmjs.org/next-auth/-/next-auth-4.19.2.tgz"
+  "version" "4.19.2"
   dependencies:
     "@babel/runtime" "^7.16.3"
     "@panva/hkdf" "^1.0.1"
-    "cookie" "^0.4.1"
-    "jose" "^4.3.7"
+    "cookie" "^0.5.0"
+    "jose" "^4.9.3"
     "oauth" "^0.9.15"
     "openid-client" "^5.1.0"
     "preact" "^10.6.3"
@@ -3499,11 +3494,11 @@
     "wrappy" "1"
 
 "openid-client@^5.1.0":
-  "integrity" "sha512-EPxJY6bT7YIYQEXSGxRC5flQ3GUhLy98ufdto6+BVBrFGPmwjUpy4xBcYuU/Wt9nPkO/3EgljBrr6Ezx4lp1RQ=="
-  "resolved" "https://registry.npmjs.org/openid-client/-/openid-client-5.1.8.tgz"
-  "version" "5.1.8"
+  "integrity" "sha512-hgJa2aQKcM2hn3eyVtN12tEA45ECjTJPXCgUh5YzTzy9qwapCvmDTVPWOcWVL0d34zeQoQ/hbG9lJhl3AYxJlQ=="
+  "resolved" "https://registry.npmjs.org/openid-client/-/openid-client-5.4.0.tgz"
+  "version" "5.4.0"
   dependencies:
-    "jose" "^4.1.4"
+    "jose" "^4.10.0"
     "lru-cache" "^6.0.0"
     "object-hash" "^2.0.1"
     "oidc-token-hash" "^5.0.1"
@@ -3629,9 +3624,9 @@
     "source-map-js" "^1.0.2"
 
 "preact-render-to-string@^5.1.19":
-  "integrity" "sha512-Wp3ner1aIVBpKg02C4AoLdBiw4kNaiFSYHr4wUF+fR7FWKAQzNri+iPfPp31sEhAtBfWoJrSxiEFzd5wp5zCgQ=="
-  "resolved" "https://registry.npmjs.org/preact-render-to-string/-/preact-render-to-string-5.2.1.tgz"
-  "version" "5.2.1"
+  "integrity" "sha512-JyhErpYOvBV1hEPwIxc/fHWXPfnEGdRKxc8gFdAZ7XV4tlzyzG847XAyEZqoDnynP88akM4eaHcSOzNcLWFguw=="
+  "resolved" "https://registry.npmjs.org/preact-render-to-string/-/preact-render-to-string-5.2.6.tgz"
+  "version" "5.2.6"
   dependencies:
     "pretty-format" "^3.8.0"
 
