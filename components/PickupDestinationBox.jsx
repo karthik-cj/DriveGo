@@ -58,7 +58,7 @@ const PickupDestinationBox = () => {
         </button>
         {duration && distance && (
           <p className="duration">
-            {duration} | {distance}
+            {duration} and {distance}
           </p>
         )}
       </div>

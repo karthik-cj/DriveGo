@@ -1,5 +1,5 @@
 import Moralis from "moralis";
-import { EvmChain } from "@moralisweb3/evm-utils";
+import { EvmChain } from "@moralisweb3/common-evm-utils";
 
 export default async function handler(req, res) {
   try {

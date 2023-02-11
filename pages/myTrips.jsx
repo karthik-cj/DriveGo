@@ -22,7 +22,25 @@ export async function getServerSideProps(context) {
 }
 
 const Trips = () => {
+  var months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  var month = new Date().getMonth();
+  var thisMonth = months[month];
+  var prevMonth = months[month - 1];
   const [activeTab, setActiveTab] = useState("tab1");
+
   const handleTab1 = () => {
     setActiveTab("tab1");
   };
@@ -32,6 +50,7 @@ const Trips = () => {
   const handleTab3 = () => {
     setActiveTab("tab3");
   };
+
   return (
     <div>
       <Head>
@@ -54,7 +73,7 @@ const Trips = () => {
         id={activeTab === "tab2" ? "active" : ""}
         style={{ left: "517px" }}
       >
-        <p>February</p>
+        <p>{thisMonth}</p>
       </div>
       <div
         className="select_month"
@@ -62,7 +81,7 @@ const Trips = () => {
         id={activeTab === "tab3" ? "active" : ""}
         style={{ left: "625px" }}
       >
-        <p>January</p>
+        <p>{prevMonth}</p>
       </div>
       <div id="tripBox"></div>
     </div>
