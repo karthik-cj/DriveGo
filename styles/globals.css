@@ -514,17 +514,12 @@
     position: absolute;
     font-family:"Josefin Sans" ;
     color: rgb(255, 255, 255);
-    /* background: #FDEBED; */
     top: 70%;
     left: 52.5%;
     width: 800px;
     margin-top: 24px;
     height: 360px;
     border-radius: 20px;
-    /* padding-top: 17px;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 17px; */
     padding: 0px;
     transform: translate(-50%, -50%);
     overflow-y: scroll;
@@ -642,46 +637,6 @@
   transform: translate(-50%, -50%);
 }
 
-/* .aboutHeading p{
-  font-family: "Open Sans";
-  font-weight: bolder;
-  font-size: 55px;
-  color: rgb(41, 66, 97);
-  position: absolute;
-  top: 165px;
-  left: 380px;
-  width: 300px;
-  height: 100px;
-  margin: 30px;
-}
-
-.aboutText {
-  letter-spacing: 2px;
-  font-family: "Open Sans";
-  text-align: left;
-  position: absolute;
-  top: 245px;
-  left: 380px;
-  font-size: 16px;
-  font-style: italic;
-  color: rgb(79, 102, 132);
-  width: 400px;
-  height: 400px;
-  font-weight: bold;
-  margin: 30px;
-}
-
-
-.aboutText::-webkit-scrollbar {
-  display: none;
-}
-
-.aboutImg {
-  position: absolute;
-  top: 120px;
-  left: 780px;
-} */
-
 .about {
   background: url(/about.png) no-repeat left;
   background-size: cover;
@@ -692,7 +647,6 @@
 }
 
 .inner-container{
-  /* box-shadow: 0 15px 25px rgba(0,0,0,.5); */
   border-radius: 10px;
   position: absolute;
   left: 410px;
