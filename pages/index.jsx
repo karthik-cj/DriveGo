@@ -25,15 +25,15 @@ export async function getServerSideProps(context) {
 function Rider() {
   return (
     <div>
+      <div id="mapbox">
+        <Map />
+      </div>
       <Head>
         <title>DriveGo | Ride Now</title>
       </Head>
       <Navbar />
       <PickupDestinationBox />
       <RideSelector />
-      <div id="mapbox">
-        <Map />
-      </div>
     </div>
   );
 }
