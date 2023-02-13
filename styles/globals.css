@@ -645,6 +645,8 @@
   transform: translate(-50%, -50%);
 }
 
+/*                        ABOUT PAGE                     */
+
 .about {
   background: url(/about.png) no-repeat left;
   background-size: cover;
@@ -688,3 +690,5 @@
   font-weight: 700;
   font-size: 19px;
 }
+
+/*                        ABOUT PAGE                     */
