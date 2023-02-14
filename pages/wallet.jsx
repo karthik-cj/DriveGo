@@ -88,7 +88,10 @@ const Wallet = ({ userBal, user }) => {
       ) : (
         <div id="transactions">
           {transactions.map((index) => (
-            <Card sx={{ maxWidth: 377 }} key={index.blockNumber}>
+            <Card
+              sx={{ maxWidth: 360, maxHeight: 450 }}
+              key={index.blockNumber}
+            >
               <CardActionArea>
                 <CardMedia
                   component="img"
