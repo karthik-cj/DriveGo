@@ -465,7 +465,7 @@
     position: absolute;
     font-family:"Josefin Sans" ;
     color: black;
-    background: #dbd5e7;
+    background: #C9F4AA;
     top: 20%;
     left: 52.5%;
     width:800px;
@@ -516,8 +516,8 @@
     position: absolute;
     font-family:"Josefin Sans" ;
     color: rgb(255, 255, 255);
-    top: 835px;
-    left: 57%;
+    top: 790px;
+    left: 56%;
     width: 900px;
     margin-top: 24px;
     padding: 0px;
@@ -532,11 +532,16 @@
     padding-bottom: 0px ;
     margin-bottom: 35px;
     font-weight: bold;
-    margin-right: 45px;
-    background: #B5F1CC;
+    margin-right: 75px;
+    background: #ECF2FF;
     box-shadow: none;
     border-radius: 20px;
     color: black;
+  }
+
+  .typing {
+    font-weight: bold;
+    margin-bottom: 10px;
   }
 
   .progress {

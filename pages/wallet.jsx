@@ -89,7 +89,7 @@ const Wallet = ({ userBal, user }) => {
         <div id="transactions">
           {transactions.map((index) => (
             <Card
-              sx={{ maxWidth: 360, maxHeight: 450 }}
+              sx={{ maxWidth: 360, maxHeight: 430 }}
               key={index.blockNumber}
             >
               <CardActionArea>
@@ -100,7 +100,7 @@ const Wallet = ({ userBal, user }) => {
                   alt="Ether Coin"
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography variant="h5" className="typing">
                     Value : {index.value * 1e-18} ETH
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
@@ -123,18 +123,3 @@ const Wallet = ({ userBal, user }) => {
 };
 
 export default Wallet;
-
-{
-  /* {walletTrans.map((index) => (
-          <div key={index.blockNumber}>
-            <p style={{ margin: "10px", paddingTop: "15px" }}>
-              From - {index.from}
-            </p>
-            <p style={{ margin: "10px" }}>To - {index.to}</p>
-            <p style={{ margin: "10px" }}>Value - {index.value * 1e-18}</p>
-            <p style={{ margin: "10px", paddingBottom: "13px" }}>
-              Date/Time - {index.blockTimestamp}
-            </p>
-          </div>
-        ))} */
-}

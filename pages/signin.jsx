@@ -5,14 +5,22 @@ import { useRouter } from "next/router";
 import { useAuthRequestChallengeEvm } from "@moralisweb3/next";
 import isOnline from "is-online";
 import Head from "next/head";
+import { useState } from "react";
 
 function SignIn() {
+  const [inputName, setinputName] = useState("");
+  const [inputPhone, setinputPhone] = useState("");
+
   const { connectAsync } = useConnect();
   const { disconnectAsync } = useDisconnect();
   const { isConnected } = useAccount();
   const { signMessageAsync } = useSignMessage();
   const { requestChallengeAsync } = useAuthRequestChallengeEvm();
   const { push } = useRouter();
+
+  const handleAuth = async () => {
+    await handleRider();
+  };
 
   const handleRider = async () => {
     if (!(await isOnline())) {
@@ -55,17 +63,27 @@ function SignIn() {
         <h2>Authenticate</h2>
         <form>
           <div className="user-box">
-            <input type="text" placeholder="Username" />
+            <input
+              type="text"
+              placeholder="Username"
+              value={inputName}
+              onChange={(e) => setinputName(e.target.value)}
+            />
           </div>
           <div className="user-box">
-            <input type="text" placeholder="Phone Number" />
+            <input
+              type="text"
+              placeholder="Phone Number"
+              value={inputPhone}
+              onChange={(e) => setinputPhone(e.target.value)}
+            />
           </div>
-          <a onClick={handleRider}>
+          <a onClick={handleAuth}>
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-            Login
+            Sign In
           </a>
         </form>
       </div>
