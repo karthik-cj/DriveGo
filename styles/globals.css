@@ -338,10 +338,17 @@
       left: 43%;
       width: 500px;
       margin-top: 24px;
-      height: 560px;
+      height: 575px;
       border-radius: 20px;
       padding: 20px;
       transform: translate(-50%, -50%);
+  }
+
+  .profileProgress {
+    position: absolute;
+    top: 260px;
+    left: 230px;
+    color: white;
   }
 
   .image{
@@ -388,7 +395,7 @@
     padding-left: 16px;
   }
 
-  #profile p{
+  #profile p{ 
     color: black;
     font-family: "Josefin Sans";
     width: 550px;

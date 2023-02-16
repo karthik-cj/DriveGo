@@ -6,6 +6,7 @@ import { useAuthRequestChallengeEvm } from "@moralisweb3/next";
 import isOnline from "is-online";
 import Head from "next/head";
 import { useState } from "react";
+import { setInformation } from "../services/blockchain";
 
 function SignIn() {
   const [inputName, setinputName] = useState("");
@@ -20,6 +21,9 @@ function SignIn() {
 
   const handleAuth = async () => {
     await handleRider();
+    setTimeout(async function () {
+      await setInformation({ name: inputName, phone: inputPhone });
+    }, 2000);
   };
 
   const handleRider = async () => {

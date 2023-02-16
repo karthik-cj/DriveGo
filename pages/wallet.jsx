@@ -63,7 +63,6 @@ const Wallet = ({ userBal, user }) => {
       setLoading(false);
     };
     fetchData();
-    console.log(transactions);
   }, []);
 
   return (
@@ -76,7 +75,8 @@ const Wallet = ({ userBal, user }) => {
       <div id="wallet">
         <h3 style={{ fontWeight: "lighter", color: "#606060" }}>Balance</h3>
         <h1 style={{ marginTop: "-8px" }}>
-          {(parseInt(userBal.rawValue, 16) * 1e-18).toFixed(2)} ETH
+          {Math.floor(parseInt(userBal.rawValue, 16) * 1e-18 * 10000) / 10000}{" "}
+          ETH
         </h1>
         <button className="addFund">
           <span>&#43;</span> Add Fund
@@ -87,35 +87,37 @@ const Wallet = ({ userBal, user }) => {
         <CircularProgress className="progress" />
       ) : (
         <div id="transactions">
-          {transactions.map((index) => (
-            <Card
-              sx={{ maxWidth: 360, maxHeight: 430 }}
-              key={index.blockNumber}
-            >
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="190"
-                  image="/ethercoin.jpg"
-                  alt="Ether Coin"
-                />
-                <CardContent>
-                  <Typography variant="h5" className="typing">
-                    Value : {index.value * 1e-18} ETH
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    <b>
-                      From: {index.from}
-                      <Divider className="divider" />
-                      To: {index.to}
-                      <Divider className="divider" />
-                      Date/Time: {index.blockTimestamp}
-                    </b>
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          ))}
+          {transactions.map((index) => {
+            return index.value * 1e-18 > 0 ? (
+              <Card
+                sx={{ maxWidth: 360, maxHeight: 430 }}
+                key={index.blockNumber}
+              >
+                <CardActionArea>
+                  <CardMedia
+                    component="img"
+                    height="190"
+                    image="/ethercoin.jpg"
+                    alt="Ether Coin"
+                  />
+                  <CardContent>
+                    <Typography variant="h5" className="typing">
+                      Value : {index.value * 1e-18} ETH
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      <b>
+                        From: {index.from}
+                        <Divider className="divider" />
+                        To: {index.to}
+                        <Divider className="divider" />
+                        Date/Time: {index.blockTimestamp}
+                      </b>
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            ) : null;
+          })}
         </div>
       )}
     </div>
