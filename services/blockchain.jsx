@@ -20,28 +20,55 @@ const getEtheriumContract = async () => {
   return contract;
 };
 
-const setInformation = async ({ name, phone }) => {
+const setUserInformation = async ({ name, phone }) => {
   try {
     if (!ethereum) return alert("No Wallet Found");
     const contract = await getEtheriumContract();
-    await contract.setInformation(name, phone);
+    await contract.setUserInformation(name, phone);
   } catch (error) {
     reportError(error);
   }
 };
 
-const retrieveInformation = async () => {
+const retrieveUserInformation = async () => {
   try {
     if (!ethereum) return alert("No Wallet Found");
     const contract = await getEtheriumContract();
-    const info = await contract.retrieveInformation();
-    return info;
+    const data = await contract.retrieveUserInformation();
+    return data;
+  } catch (error) {
+    reportError(error);
+  }
+};
+
+const addLocation = async ({ pickupLocation, dropoffLocation }) => {
+  try {
+    if (!ethereum) return alert("No Wallet Found");
+    const contract = await getEtheriumContract();
+    await contract.addLocation(pickupLocation, dropoffLocation);
+  } catch (error) {
+    reportError(error);
+  }
+};
+
+const getLocation = async () => {
+  try {
+    if (!ethereum) return alert("No Wallet Found");
+    const contract = await getEtheriumContract();
+    const data = await contract.getLocation();
+    return data;
   } catch (error) {
     reportError(error);
   }
 };
 
 const reportError = (error) => {
-  console.log(error.message);
+  console.error(error.message);
 };
-export { setInformation, retrieveInformation };
+
+export {
+  setUserInformation,
+  retrieveUserInformation,
+  addLocation,
+  getLocation,
+};

@@ -1,6 +1,7 @@
 import { useRef, useContext } from "react";
 import { DriveGoContext } from "../context/DriveGoContext";
 import { Autocomplete, LoadScript } from "@react-google-maps/api";
+import { addLocation } from "../services/blockchain";
 
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 const LIBRARIES = ["places"];
@@ -13,11 +14,15 @@ const PickupDestinationBox = () => {
   const pickupRef = useRef("");
   const dropoffRef = useRef("");
 
-  const updateInput = () => {
+  const updateInput = async () => {
     const pickupValue = pickupRef.current.value;
     const dropoffValue = dropoffRef.current.value;
     setPickup(pickupValue);
     setDropoff(dropoffValue);
+    await addLocation({
+      pickupLocation: pickupValue,
+      dropoffLocation: dropoffValue,
+    });
   };
 
   function updatePickupText() {

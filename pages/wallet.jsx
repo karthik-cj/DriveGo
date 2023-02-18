@@ -102,7 +102,8 @@ const Wallet = ({ userBal, user }) => {
                   />
                   <CardContent>
                     <Typography variant="h5" className="typing">
-                      Value : {index.value * 1e-18} ETH
+                      Value : {Math.floor(index.value * 1e-18 * 10000) / 10000}{" "}
+                      ETH
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                       <b>

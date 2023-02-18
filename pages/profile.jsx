@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import ProfileElement from "../components/ProfileElement";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { retrieveInformation } from "../services/blockchain";
+import { retrieveUserInformation } from "../services/blockchain";
 import { CircularProgress } from "@mui/material";
 
 export async function getServerSideProps(context) {
@@ -27,7 +27,7 @@ const Profile = ({ user }) => {
   useEffect(() => {
     getInfo();
     async function getInfo() {
-      setUserInfo(await retrieveInformation());
+      setUserInfo(await retrieveUserInformation());
     }
   }, []);
 
