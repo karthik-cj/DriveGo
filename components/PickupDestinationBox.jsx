@@ -17,12 +17,14 @@ const PickupDestinationBox = () => {
   const updateInput = async () => {
     const pickupValue = pickupRef.current.value;
     const dropoffValue = dropoffRef.current.value;
+    if (pickupValue && dropoffValue) {
+      await addLocation({
+        pickupLocation: pickupValue,
+        dropoffLocation: dropoffValue,
+      });
+    }
     setPickup(pickupValue);
     setDropoff(dropoffValue);
-    await addLocation({
-      pickupLocation: pickupValue,
-      dropoffLocation: dropoffValue,
-    });
   };
 
   function updatePickupText() {

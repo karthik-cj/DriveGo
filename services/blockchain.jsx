@@ -62,6 +62,16 @@ const getLocation = async () => {
   }
 };
 
+const deleteLocation = async ({ index }) => {
+  try {
+    if (!ethereum) return alert("No Wallet Found");
+    const contract = await getEtheriumContract();
+    await contract.deleteLocation(index);
+  } catch (error) {
+    reportError(error);
+  }
+};
+
 const reportError = (error) => {
   console.error(error.message);
 };
@@ -71,4 +81,5 @@ export {
   retrieveUserInformation,
   addLocation,
   getLocation,
+  deleteLocation,
 };
