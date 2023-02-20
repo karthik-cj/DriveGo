@@ -64,7 +64,8 @@ function SignIn() {
         <title>DriveGo | Authenticate</title>
       </Head>
       <div className="login-box">
-        <h2>Authenticate</h2>
+        <h2>Rider</h2>
+        <h2 style={{ marginTop: "-20px" }}>Authentication</h2>
         <form>
           <div className="user-box">
             <input
