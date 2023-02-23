@@ -49,7 +49,7 @@ const Map = () => {
     <LoadScript googleMapsApiKey={GOOGLE_MAPS_API_KEY} libraries={LIBRARIES}>
       <GoogleMap
         center={center}
-        zoom={12}
+        zoom={13}
         mapContainerStyle={{ width: "100%", height: "100%" }}
         options={{
           zoomControl: false,

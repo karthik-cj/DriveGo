@@ -7,6 +7,7 @@ export const DriveGoProvider = ({ children }) => {
   const [dropoff, setDropoff] = useState("");
   const [distance, setDistance] = useState("");
   const [duration, setDuration] = useState("");
+  const [drivers, setDrivers] = useState(null);
   return (
     <DriveGoContext.Provider
       value={{
@@ -18,6 +19,8 @@ export const DriveGoProvider = ({ children }) => {
         setDistance,
         duration,
         setDuration,
+        drivers,
+        setDrivers,
       }}
     >
       {children}

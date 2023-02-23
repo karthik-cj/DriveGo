@@ -4,25 +4,21 @@ import { DriveGoContext } from "../context/DriveGoContext";
 
 const carList = [
   {
-    id: 1,
     service: "Classic",
     iconUrl: "/classic.png",
     priceMultiplier: 15,
   },
   {
-    id: 2,
     service: "Classic XL",
     iconUrl: "/classicXL.png",
     priceMultiplier: 18,
   },
   {
-    id: 3,
     service: "Premium",
     iconUrl: "/premium.png",
     priceMultiplier: 21,
   },
   {
-    id: 4,
     service: "Premium XL",
     iconUrl: "/premiumXL.png",
     priceMultiplier: 24,
@@ -30,15 +26,15 @@ const carList = [
 ];
 
 const RideSelector = () => {
-  const { distance, duration } = useContext(DriveGoContext);
+  const { distance, duration, drivers } = useContext(DriveGoContext);
   let newDistance = distance.slice(0, -3);
   return (
     <div>
-      {duration && distance && (
+      {duration && distance && drivers && (
         <div style={{ color: "black" }} className="ride-select-box">
           <div>
             {carList.map((car, index) => (
-              <div key={car.id} className="car-image">
+              <div key={index} className="car-image">
                 <Image
                   className="box"
                   src={car.iconUrl}

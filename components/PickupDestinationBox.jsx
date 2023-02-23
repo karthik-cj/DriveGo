@@ -1,13 +1,13 @@
 import { useRef, useContext } from "react";
 import { DriveGoContext } from "../context/DriveGoContext";
 import { Autocomplete, LoadScript } from "@react-google-maps/api";
-import { addLocation } from "../services/blockchain";
+import { getAllDriverDetails } from "../services/blockchain";
 
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 const LIBRARIES = ["places"];
 
 const PickupDestinationBox = () => {
-  const { setPickup, setDropoff, distance, duration } =
+  const { setPickup, setDropoff, distance, duration, setDrivers } =
     useContext(DriveGoContext);
 
   const pickupText = useRef("");
@@ -18,10 +18,7 @@ const PickupDestinationBox = () => {
     const pickupValue = pickupRef.current.value;
     const dropoffValue = dropoffRef.current.value;
     if (pickupValue && dropoffValue) {
-      await addLocation({
-        pickupLocation: pickupValue,
-        dropoffLocation: dropoffValue,
-      });
+      setDrivers(await getAllDriverDetails());
     }
     setPickup(pickupValue);
     setDropoff(dropoffValue);

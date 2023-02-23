@@ -1,5 +1,5 @@
-import abi from "../abis/contracts/UserDetails.sol/UserDetails.json";
-import address from "../abis/contractAddress.json";
+import abi from "../../drivego-blockchain/abis/contracts/UserDetails.sol/UserDetails.json";
+import address from "../../drivego-blockchain/abis/contractAddress.json";
 import { ethers } from "ethers";
 
 let ethereum;
@@ -41,32 +41,23 @@ const retrieveUserInformation = async () => {
   }
 };
 
-const addLocation = async ({ pickupLocation, dropoffLocation }) => {
+const retrieveSpecificDriver = async ({ address }) => {
   try {
     if (!ethereum) return alert("No Wallet Found");
     const contract = await getEtheriumContract();
-    await contract.addLocation(pickupLocation, dropoffLocation);
-  } catch (error) {
-    reportError(error);
-  }
-};
-
-const getLocation = async () => {
-  try {
-    if (!ethereum) return alert("No Wallet Found");
-    const contract = await getEtheriumContract();
-    const data = await contract.getLocation();
+    const data = await contract.retrieveSpecificDriver(address);
     return data;
   } catch (error) {
     reportError(error);
   }
 };
 
-const deleteLocation = async ({ index }) => {
+const getAllDriverDetails = async () => {
   try {
     if (!ethereum) return alert("No Wallet Found");
     const contract = await getEtheriumContract();
-    await contract.deleteLocation(index);
+    const data = await contract.getAllDriverDetails();
+    return data;
   } catch (error) {
     reportError(error);
   }
@@ -79,7 +70,6 @@ const reportError = (error) => {
 export {
   setUserInformation,
   retrieveUserInformation,
-  addLocation,
-  getLocation,
-  deleteLocation,
+  retrieveSpecificDriver,
+  getAllDriverDetails,
 };
