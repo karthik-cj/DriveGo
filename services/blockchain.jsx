@@ -20,11 +20,11 @@ const getEtheriumContract = async () => {
   return contract;
 };
 
-const setUserInformation = async ({ name, phone }) => {
+const setUserInformation = async ({ name, phone, aadhar }) => {
   try {
     if (!ethereum) return alert("No Wallet Found");
     const contract = await getEtheriumContract();
-    await contract.setUserInformation(name, phone);
+    await contract.setUserInformation(name, phone, aadhar);
   } catch (error) {
     reportError(error);
   }

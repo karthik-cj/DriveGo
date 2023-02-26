@@ -76,7 +76,7 @@ const RideSelector = () => {
                 >
                   <div style={{ fontWeight: "bold" }}>{drivers[2][index]}</div>
                   <div style={{ color: "#205295" }}>
-                    {drivers[1][index].slice(0, 19).concat(".....")}
+                    {drivers[1][index].slice(0, 15).concat(".....")}
                   </div>
                 </div>
                 <div className="box">
@@ -109,7 +109,7 @@ const RideSelector = () => {
           }}
         >
           <DialogTitle
-            variant="h4"
+            variant="h5"
             sx={{ fontFamily: "Josefin Sans", paddingTop: "25px" }}
           >
             CONFIRM DRIVER
@@ -119,7 +119,8 @@ const RideSelector = () => {
             <DialogContentText
               sx={{
                 fontFamily: "Josefin Sans",
-                fontSize: "20px",
+                fontSize: "17px",
+                fontWeight: "bold",
                 marginLeft: "10px",
                 marginRight: "10px",
               }}
@@ -129,7 +130,8 @@ const RideSelector = () => {
             <DialogContentText
               sx={{
                 fontFamily: "Josefin Sans",
-                fontSize: "20px",
+                fontSize: "17px",
+                fontWeight: "bold",
                 marginLeft: "10px",
                 marginRight: "10px",
               }}
@@ -139,7 +141,8 @@ const RideSelector = () => {
             <DialogContentText
               sx={{
                 fontFamily: "Josefin Sans",
-                fontSize: "20px",
+                fontSize: "17px",
+                fontWeight: "bold",
                 marginLeft: "10px",
                 marginRight: "10px",
               }}
@@ -149,17 +152,8 @@ const RideSelector = () => {
             <DialogContentText
               sx={{
                 fontFamily: "Josefin Sans",
-                fontSize: "20px",
-                marginLeft: "10px",
-                marginRight: "10px",
-              }}
-            >
-              Vehicle Type : {details[3]}
-            </DialogContentText>
-            <DialogContentText
-              sx={{
-                fontFamily: "Josefin Sans",
-                fontSize: "20px",
+                fontSize: "17px",
+                fontWeight: "bold",
                 marginLeft: "10px",
                 marginRight: "10px",
               }}
@@ -169,7 +163,8 @@ const RideSelector = () => {
             <DialogContentText
               sx={{
                 fontFamily: "Josefin Sans",
-                fontSize: "20px",
+                fontSize: "17px",
+                fontWeight: "bold",
                 marginLeft: "10px",
                 marginRight: "10px",
               }}
@@ -192,7 +187,7 @@ const RideSelector = () => {
             <Button
               style={{ margin: "5px" }}
               variant="contained"
-              color="success"
+              color="warning"
               onClick={() => {
                 setOpen(false);
               }}
