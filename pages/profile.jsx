@@ -5,6 +5,8 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { retrieveUserInformation } from "../services/blockchain";
 import { CircularProgress } from "@mui/material";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
@@ -23,9 +25,12 @@ export async function getServerSideProps(context) {
 
 const Profile = ({ user }) => {
   const [userInfo, setUserInfo] = useState(null);
+  const [alertOpen, setAlertOpen] = useState(false);
 
   useEffect(() => {
-    getInfo();
+    if (window.ethereum.selectedAddress === null) {
+      setAlertOpen(true);
+    } else getInfo();
     async function getInfo() {
       setUserInfo(await retrieveUserInformation());
     }
@@ -33,6 +38,21 @@ const Profile = ({ user }) => {
 
   return (
     <div>
+      <Snackbar
+        open={alertOpen}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        style={{ marginTop: "40px" }}
+      >
+        <Alert
+          severity="error"
+          sx={{ width: "100%", fontWeight: "bold", fontFamily: "Josefin Sans" }}
+          onClose={() => {
+            setAlertOpen(false);
+          }}
+        >
+          Connect To Metamask Wallet !!!
+        </Alert>
+      </Snackbar>
       <Head>
         <title>DriveGo | Profile</title>
       </Head>
@@ -47,7 +67,7 @@ const Profile = ({ user }) => {
               <img src="/login.png" width={45} />
             </div>
             <h1 className="profile_name">{userInfo[0]}</h1>
-            <h3 className="profile_no">+91 {parseInt(userInfo[1]._hex, 16)}</h3>
+            <h3 className="profile_no">+91 {userInfo[1]}</h3>
             <br />
             <br />
             <label>Identification</label>

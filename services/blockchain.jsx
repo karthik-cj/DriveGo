@@ -64,7 +64,7 @@ const getAllDriverDetails = async () => {
 };
 
 const reportError = (error) => {
-  console.error(error.message);
+  console.log(error.message);
 };
 
 export {

@@ -1,3 +1,5 @@
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import {
   LoadScript,
   GoogleMap,
@@ -11,9 +13,10 @@ const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 const LIBRARIES = ["places"];
 
 const Map = () => {
-  const { pickup, dropoff, setDistance, setDuration } =
+  const { pickup, dropoff, setDistance, setDuration, drivers } =
     useContext(DriveGoContext);
   const [directionsResponse, setDirectionsResponse] = useState(null);
+  const [alertOpen, setAlertOpen] = useState(false);
 
   useEffect(() => {
     if (pickup && dropoff) {
@@ -41,12 +44,27 @@ const Map = () => {
       setDistance(results.routes[0].legs[0].distance.text);
       setDuration(results.routes[0].legs[0].duration.text);
     } catch (error) {
-      alert("No Routes Available!!!");
+      setAlertOpen(true);
     }
   }
 
   return (
     <LoadScript googleMapsApiKey={GOOGLE_MAPS_API_KEY} libraries={LIBRARIES}>
+      <Snackbar
+        open={alertOpen}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        style={{ marginTop: "40px" }}
+      >
+        <Alert
+          severity="error"
+          sx={{ width: "100%", fontWeight: "bold", fontFamily: "Josefin Sans" }}
+          onClose={() => {
+            setAlertOpen(false);
+          }}
+        >
+          No Routes Available !!!
+        </Alert>
+      </Snackbar>
       <GoogleMap
         center={center}
         zoom={13}
