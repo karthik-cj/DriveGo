@@ -11,8 +11,6 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 
-let arr = [];
-
 const RideSelector = () => {
   const [alertOpen, setAlertOpen] = useState(false);
   const [details, setDetails] = useState(null);
@@ -30,32 +28,27 @@ const RideSelector = () => {
 
   useEffect(() => {
     if (drivers) {
-      if (drivers[0].length == 0) {
+      if (drivers[0].length === 0) {
         setAlertOpen(true);
+        setLocations([]);
       } else {
-        arr = [];
-        for (let i = 0; i < drivers[0].length; i++) {
-          calculateRoute(drivers[1][i]);
-        }
+        Promise.all(drivers[1].map((location) => calculateRoute(location)))
+          .then((durations) => setLocations(durations))
+          .catch((error) => console.log(error));
       }
     }
   }, [drivers]);
 
   async function calculateRoute(location) {
-    try {
-      const directionsService = new google.maps.DirectionsService();
-      const results = await directionsService.route({
-        origin: pickup,
-        destination: location,
-        travelMode: google.maps.TravelMode.DRIVING,
-      });
-      arr.push(results.routes[0].legs[0].duration.text);
-      setLocations(arr);
-    } catch (error) {
-      console.log(error);
-    }
+    const directionsService = new google.maps.DirectionsService();
+    const results = await directionsService.route({
+      origin: pickup,
+      destination: location,
+      travelMode: google.maps.TravelMode.DRIVING,
+    });
+    return results.routes[0].legs[0].duration.text;
   }
-  console.log(locations);
+
   return (
     <div>
       <Snackbar
@@ -73,7 +66,7 @@ const RideSelector = () => {
           No Drivers Found !!!
         </Alert>
       </Snackbar>
-      {duration && drivers && locations.length > 0 && (
+      {duration && drivers && locations.length == drivers[0].length && (
         <div style={{ color: "black" }} className="ride-select-box">
           {drivers[0].map((car, index) => (
             <Accordion
@@ -110,7 +103,9 @@ const RideSelector = () => {
                   }}
                 >
                   <div style={{ fontWeight: "bold" }}>{drivers[2][index]}</div>
-                  <div style={{ color: "#205295" }}>{arr[index]} away.</div>
+                  <div style={{ color: "#205295" }}>
+                    {locations[index]} away.
+                  </div>
                 </div>
                 <div
                   style={{
