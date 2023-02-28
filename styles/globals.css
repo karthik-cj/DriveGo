@@ -574,12 +574,28 @@
 
   .ride-select-box{
     position: absolute;
-    top: 349.5px;
-    left: 124px;
-    width: 26%;
+    top: 360px;
+    left: 137px;
+    width: 24.2%;
+    height: 328px;
     margin: 0px;
     font-family: "Josefin Sans";
+    overflow-y: auto;
+    border-radius: 13px;
   }
+
+  .ride-select-box::-webkit-scrollbar{
+    display: none;
+  }
+
+  .accordian {
+    transition: all 300ms;
+    box-shadow: none;
+  }
+
+  .accordian:hover {
+    background: #efefee;
+  } 
 
   .car-image{
     cursor: pointer;

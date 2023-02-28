@@ -4,21 +4,24 @@ import { DriveGoContext } from "../context/DriveGoContext";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { useState, useEffect } from "react";
-import Button from "@mui/material/Button";
 import { retrieveSpecificDriver } from "../services/blockchain";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import { Divider } from "@mui/material";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Typography from "@mui/material/Typography";
+import { Button } from "@mui/material";
 
 const RideSelector = () => {
   const [alertOpen, setAlertOpen] = useState(false);
-  const [open, setOpen] = useState(false);
   const [details, setDetails] = useState(null);
+  const [expanded, setExpanded] = useState("");
   const { distance, duration, drivers } = useContext(DriveGoContext);
   let newDistance = distance.slice(0, -3);
+
+  const handleChange = (panel, car) => async (event, newExpanded) => {
+    setDetails(await retrieveSpecificDriver({ address: car }));
+    setExpanded(newExpanded ? panel : false);
+  };
 
   useEffect(() => {
     if (drivers) {
@@ -47,16 +50,19 @@ const RideSelector = () => {
       </Snackbar>
       {drivers && duration && (
         <div style={{ color: "black" }} className="ride-select-box">
-          <div>
-            {drivers[0].map((car, index) => (
-              <div
-                key={car}
-                className="car-image"
-                onClick={async () => {
-                  setDetails(await retrieveSpecificDriver({ address: car }));
-                  setOpen(true);
-                }}
-              >
+          {drivers[0].map((car, index) => (
+            <Accordion
+              square={true}
+              className="accordian"
+              sx={{
+                borderRadius: "13px",
+                marginBottom: "10px",
+              }}
+              key={car}
+              expanded={expanded === `panel${index}`}
+              onChange={handleChange(`panel${index}`, car)}
+            >
+              <AccordionSummary sx={{ height: "80px" }}>
                 <Image
                   className="box"
                   src={
@@ -68,18 +74,31 @@ const RideSelector = () => {
                   alt=""
                   height={90}
                   width={90}
-                  style={{ position: "relative", bottom: "3px" }}
+                  style={{
+                    position: "relative",
+                    right: "8px",
+                  }}
                 />
                 <div
-                  className="box"
-                  style={{ position: "relative", left: "5px" }}
+                  style={{
+                    height: "40px",
+                    position: "relative",
+                    top: "32px",
+                  }}
                 >
                   <div style={{ fontWeight: "bold" }}>{drivers[2][index]}</div>
                   <div style={{ color: "#205295" }}>
                     {drivers[1][index].slice(0, 15).concat(".....")}
                   </div>
                 </div>
-                <div className="box">
+                <div
+                  style={{
+                    height: "30px",
+                    position: "relative",
+                    top: "34px",
+                    left: "33px",
+                  }}
+                >
                   <div
                     style={{
                       float: "left",
@@ -96,106 +115,30 @@ const RideSelector = () => {
                   </div>
                   <Image src="/eth.png" alt="" height={25} width={40} />
                 </div>
-              </div>
-            ))}
-          </div>
+              </AccordionSummary>
+              <AccordionDetails>
+                {details && (
+                  <Typography sx={{ fontFamily: "Josefin Sans" }}>
+                    Driver : {details[0]} <br />
+                    Phone : {details[1]} <br />
+                    Vehicle Model : {details[7]} <br />
+                    Vehicle Number : {details[4]} <br />
+                    <Button
+                      variant="contained"
+                      color="error"
+                      sx={{
+                        position: "relative",
+                        left: "110px",
+                      }}
+                    >
+                      Book Ride
+                    </Button>
+                  </Typography>
+                )}
+              </AccordionDetails>
+            </Accordion>
+          ))}
         </div>
-      )}
-      {details && (
-        <Dialog
-          open={open}
-          onClose={() => {
-            setOpen(false);
-          }}
-        >
-          <DialogTitle
-            variant="h5"
-            sx={{ fontFamily: "Josefin Sans", paddingTop: "25px" }}
-          >
-            CONFIRM DRIVER
-          </DialogTitle>
-          <Divider />
-          <DialogContent>
-            <DialogContentText
-              sx={{
-                fontFamily: "Josefin Sans",
-                fontSize: "17px",
-                fontWeight: "bold",
-                marginLeft: "10px",
-                marginRight: "10px",
-              }}
-            >
-              Driver : {details[0]}
-            </DialogContentText>
-            <DialogContentText
-              sx={{
-                fontFamily: "Josefin Sans",
-                fontSize: "17px",
-                fontWeight: "bold",
-                marginLeft: "10px",
-                marginRight: "10px",
-              }}
-            >
-              Phone : {details[1]}
-            </DialogContentText>
-            <DialogContentText
-              sx={{
-                fontFamily: "Josefin Sans",
-                fontSize: "17px",
-                fontWeight: "bold",
-                marginLeft: "10px",
-                marginRight: "10px",
-              }}
-            >
-              Location : {details[2]}
-            </DialogContentText>
-            <DialogContentText
-              sx={{
-                fontFamily: "Josefin Sans",
-                fontSize: "17px",
-                fontWeight: "bold",
-                marginLeft: "10px",
-                marginRight: "10px",
-              }}
-            >
-              Vehicle Number : {details[4]}
-            </DialogContentText>
-            <DialogContentText
-              sx={{
-                fontFamily: "Josefin Sans",
-                fontSize: "17px",
-                fontWeight: "bold",
-                marginLeft: "10px",
-                marginRight: "10px",
-              }}
-            >
-              Vehicle Model : {details[7]}
-            </DialogContentText>
-          </DialogContent>
-          <Divider />
-          <DialogActions>
-            <Button
-              style={{ margin: "5px" }}
-              variant="contained"
-              color="inherit"
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              Cancel
-            </Button>
-            <Button
-              style={{ margin: "5px" }}
-              variant="contained"
-              color="warning"
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              Book Ride
-            </Button>
-          </DialogActions>
-        </Dialog>
       )}
     </div>
   );
