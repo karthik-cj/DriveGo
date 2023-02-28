@@ -18,10 +18,11 @@ const PickupDestinationBox = () => {
     const pickupValue = pickupRef.current.value;
     const dropoffValue = dropoffRef.current.value;
     if (pickupValue && dropoffValue) {
-      setDrivers(await getAllDriverDetails());
+      let data = await getAllDriverDetails();
+      setDrivers(data);
+      setPickup(pickupValue);
+      setDropoff(dropoffValue);
     }
-    setPickup(pickupValue);
-    setDropoff(dropoffValue);
   };
 
   function updatePickupText() {
