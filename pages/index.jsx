@@ -18,6 +18,8 @@ import {
 } from "../services/blockchain";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Divider } from "@mui/material";
+import { BottomSheet } from "react-spring-bottom-sheet";
+import "react-spring-bottom-sheet/dist/style.css";
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
@@ -42,6 +44,7 @@ function Rider() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [aadharNumber, setAadharNumber] = useState("");
+  const [bottomSheet, setBottomSheet] = useState(false);
 
   useEffect(() => {
     if (window.ethereum.selectedAddress === null) {
@@ -157,6 +160,16 @@ function Rider() {
       <Navbar />
       <PickupDestinationBox />
       <RideSelector />
+      <button onClick={() => setBottomSheet(true)}>Open bottom sheet</button>
+      <BottomSheet
+        style={{ color: "black" }}
+        open={bottomSheet}
+        onDismiss={() => {
+          setBottomSheet(false);
+        }}
+      >
+        <h1 style={{ margin: "20px" }}>Ongoing Rides</h1>
+      </BottomSheet>
     </div>
   );
 }
