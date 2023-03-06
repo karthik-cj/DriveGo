@@ -28,7 +28,7 @@ const Profile = ({ user }) => {
   const [alertOpen, setAlertOpen] = useState(false);
 
   useEffect(() => {
-    if (window.ethereum.selectedAddress === null) {
+    if (window.ethereum === null) {
       setAlertOpen(true);
     } else getInfo();
     async function getInfo() {
