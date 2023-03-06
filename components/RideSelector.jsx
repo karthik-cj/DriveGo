@@ -143,6 +143,7 @@ const RideSelector = () => {
                       variant="contained"
                       color="error"
                       sx={{
+                        borderRadius: "12px",
                         position: "relative",
                         left: "110px",
                         top: "3px",

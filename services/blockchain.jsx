@@ -1,5 +1,5 @@
-import abi from "../../drivego-blockchain/abis/contracts/UserDetails.sol/UserDetails.json";
-import address from "../../drivego-blockchain/abis/contractAddress.json";
+import abi from "../constants/UserDetails.json";
+import address from "../constants/contractAddress.json";
 import { ethers } from "ethers";
 
 let ethereum;
