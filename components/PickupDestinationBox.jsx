@@ -20,9 +20,9 @@ const PickupDestinationBox = () => {
     if (pickupValue && dropoffValue) {
       let data = await getAllDriverDetails();
       setDrivers(data);
-      setPickup(pickupValue);
-      setDropoff(dropoffValue);
     }
+    setPickup(pickupValue);
+    setDropoff(dropoffValue);
   };
 
   function updatePickupText() {
