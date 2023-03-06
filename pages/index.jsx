@@ -52,7 +52,7 @@ function Rider() {
     } else retrieve();
     async function retrieve() {
       let details = await retrieveUserInformation();
-      if (!details[0]) setOpen(true);
+      if (details) if (!details[0]) setOpen(true);
     }
   }, []);
 
