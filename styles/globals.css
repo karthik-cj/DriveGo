@@ -160,13 +160,15 @@
 
     @media only screen and (max-width: 768px){
       .login-box {
-        width: 95vw;
+        width: 360px;
+        transform: translate(-50%, -60%);
+
       }
 
       .login-box form a {
         position: absolute;
-        left: 105px;
         bottom: 40px;
+        left: 120px;
         display: inline-block;
         padding: 10px 20px;
         color: #03e9f4;
