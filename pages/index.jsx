@@ -47,7 +47,7 @@ function Rider() {
   const [bottomSheet, setBottomSheet] = useState(false);
 
   useEffect(() => {
-    if (window.ethereum === null) {
+    if (window.ethereum.selectedAddress === null) {
       setAlertOpen(true);
     } else retrieve();
     async function retrieve() {
