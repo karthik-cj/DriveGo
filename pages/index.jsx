@@ -18,8 +18,8 @@ import {
 } from "../services/blockchain";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Divider } from "@mui/material";
-import { BottomSheet } from "react-spring-bottom-sheet";
-import "react-spring-bottom-sheet/dist/style.css";
+// import { BottomSheet } from "react-spring-bottom-sheet";
+// import "react-spring-bottom-sheet/dist/style.css";
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
