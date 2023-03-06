@@ -28,11 +28,29 @@ const Profile = ({ user }) => {
   const [alertOpen, setAlertOpen] = useState(false);
 
   useEffect(() => {
-    if (window.ethereum.selectedAddress === null) {
-      setAlertOpen(true);
-    } else getInfo();
     async function getInfo() {
       setUserInfo(await retrieveUserInformation());
+    }
+
+    if (window.ethereum) {
+      // Listen for changes to the selected address
+      window.ethereum.on("accountsChanged", function (accounts) {
+        if (accounts.length > 0) {
+          getInfo();
+        } else {
+          setAlertOpen(true);
+        }
+      });
+
+      // Check if the wallet is already connected
+      if (window.ethereum.selectedAddress) {
+        getInfo();
+      } else {
+        setAlertOpen(true);
+      }
+    } else {
+      // MetaMask is not installed
+      setAlertOpen(true);
     }
   }, []);
 

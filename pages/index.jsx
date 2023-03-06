@@ -47,12 +47,30 @@ function Rider() {
   const [bottomSheet, setBottomSheet] = useState(false);
 
   useEffect(() => {
-    if (window.ethereum.selectedAddress === null) {
-      setAlertOpen(true);
-    } else retrieve();
     async function retrieve() {
       let details = await retrieveUserInformation();
       if (details) if (!details[0]) setOpen(true);
+    }
+
+    if (window.ethereum) {
+      // Listen for changes to the selected address
+      window.ethereum.on("accountsChanged", function (accounts) {
+        if (accounts.length > 0) {
+          retrieve();
+        } else {
+          setAlertOpen(true);
+        }
+      });
+
+      // Check if the wallet is already connected
+      if (window.ethereum.selectedAddress) {
+        retrieve();
+      } else {
+        setAlertOpen(true);
+      }
+    } else {
+      // MetaMask is not installed
+      setAlertOpen(true);
     }
   }, []);
 
