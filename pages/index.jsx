@@ -160,7 +160,7 @@ function Rider() {
       <Navbar />
       <PickupDestinationBox />
       <RideSelector />
-      <button onClick={() => setBottomSheet(true)}>Open bottom sheet</button>
+      {/* <button onClick={() => setBottomSheet(true)}>Open bottom sheet</button>
       <BottomSheet
         style={{ color: "black" }}
         open={bottomSheet}
@@ -169,7 +169,7 @@ function Rider() {
         }}
       >
         <h1 style={{ margin: "20px" }}>Ongoing Rides</h1>
-      </BottomSheet>
+      </BottomSheet> */}
     </div>
   );
 }
