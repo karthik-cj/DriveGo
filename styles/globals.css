@@ -193,46 +193,6 @@
       margin-left: 5vw;
     }
 
-    .menu-icon {
-      display: none;
-      font-size: 24px;
-      cursor: pointer;
-      margin-right: 8vw;
-      margin-top: 0.8vh;
-    }
-
-    .drawer {
-      display: none;
-      position: fixed;
-      top: 51px;
-      width: 100vw;
-      background: rgb(255, 255, 255);
-      z-index: 999;
-      transition: transform 0.5s ease-in-out;
-      border-radius: 0px 0px 25px 25px;
-    }
-
-    .drawer.open {
-      display: block;
-      transform: translateY(0);
-    }
-
-    .drawer-link {
-      display: block;
-      font-family: "Josefin Sans";
-      font-size: 18px;
-      font-weight: 500px;
-      color: #000000;
-      font-weight: bold;
-      padding: 18px 0;
-      text-align: center;
-      border-bottom: 1px solid #efefee;
-    }
-
-    .drawer-link:last-child {
-      border-bottom: none;
-    }
-
     .pickup_destination_box {
       position: absolute;
       margin-top: 1.4vh;
@@ -248,7 +208,6 @@
 
     .pickup_destination_box input {
       font-family: "Josefin Sans";
-      outline: 0;
       background: #efefee;
       width: 100%;
       margin-bottom: 15px;
@@ -256,7 +215,6 @@
       border-radius: 10px;
       padding: 15px;
       padding-left: 60px;
-      box-sizing: border-box;
       font-size: 16px;
     }
 
@@ -292,6 +250,7 @@
     }
 
     .duration{
+    cursor: default;
     position: relative;
     bottom: 51px;
     left: 144px;
@@ -304,22 +263,6 @@
     font-family: "Josefin Sans";
     background: #efefee;
     width: 225px;
-    padding-top: 12px;
-    height: 35px;
-    }
-
-    .distance{
-    position: relative;
-    bottom: 102px;
-    left: 252px;
-    font-weight: bold;
-    text-align: center;
-    font-size: 16px;
-    border-radius: 30px;
-    color: black;
-    font-family: "Josefin Sans";
-    background: #efefee;
-    width: 90px;
     padding-top: 12px;
     height: 35px;
     }
@@ -603,7 +546,7 @@
     position: relative;
     bottom: 49px;
     width: 100%;
-    height: 330px;
+    height: calc(100% - 290px);
     margin: 0px;
     font-family: "Josefin Sans";
     overflow-y: auto;

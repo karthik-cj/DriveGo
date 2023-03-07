@@ -178,7 +178,7 @@ const PickupDestinationBox = () => {
                       {drivers[2][index]}
                     </div>
                     <div style={{ color: "#205295" }}>
-                      {locations[index]} away.
+                      {locations[index]} away
                     </div>
                   </div>
                   <div

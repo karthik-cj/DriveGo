@@ -9,43 +9,20 @@ const Navbar = () => {
   };
 
   return (
-    <>
-      <nav id="navbar">
-        <a className="navlogo">DriveGo</a>
-        <div className="navlinks-container">
-          <a href="/myTrips" className="navlink">
-            My Trips
-          </a>
-          <a href="/wallet" className="navlink">
-            Wallet
-          </a>
-          <a href="/profile" className="navlink">
-            Profile
-          </a>
-        </div>
-        <div className="menu-icon" onClick={toggleDrawer}>
-          {showDrawer ? <FaTimes /> : <FaBars />}
-        </div>
-      </nav>
-      <div className={`drawer${showDrawer ? " open" : ""}`}>
-        <a href="/" className="drawer-link" onClick={toggleDrawer}>
-          Ride Now
-        </a>
-        <a href="/myTrips" className="drawer-link" onClick={toggleDrawer}>
+    <nav id="navbar">
+      <a className="navlogo">DriveGo</a>
+      <div className="navlinks-container">
+        <a href="/myTrips" className="navlink">
           My Trips
         </a>
-        <a href="/wallet" className="drawer-link" onClick={toggleDrawer}>
+        <a href="/wallet" className="navlink">
           Wallet
         </a>
-        <a href="/profile" className="drawer-link" onClick={toggleDrawer}>
+        <a href="/profile" className="navlink">
           Profile
         </a>
-
-        <a href="/about" className="drawer-link" onClick={toggleDrawer}>
-          About
-        </a>
       </div>
-    </>
+    </nav>
   );
 };
 
