@@ -2,7 +2,6 @@ import Navbar from "../components/Navbar";
 import Map from "../components/Map";
 import PickupDestinationBox from "../components/PickupDestinationBox";
 import { getSession } from "next-auth/react";
-import RideSelector from "../components/RideSelector";
 import Head from "next/head";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
@@ -177,7 +176,6 @@ function Rider() {
       </Head>
       <Navbar />
       <PickupDestinationBox />
-      <RideSelector />
       {/* <button onClick={() => setBottomSheet(true)}>Open bottom sheet</button>
       <BottomSheet
         style={{ color: "black" }}

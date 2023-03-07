@@ -22,7 +22,7 @@ export async function getServerSideProps(context) {
     };
   }
   const balanceResult = await fetch(
-    "http://localhost:3000/api/moralis/balance",
+    `${process.env.NEXTAUTH_URL}/api/moralis/balance`,
     {
       method: "POST",
       headers: {
@@ -47,7 +47,7 @@ const Wallet = ({ userBal, user }) => {
     const fetchData = async () => {
       setLoading(true);
       const transactionResult = await fetch(
-        "http://localhost:3000/api/moralis/transactions",
+        `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/moralis/transactions`,
         {
           method: "POST",
           headers: {
