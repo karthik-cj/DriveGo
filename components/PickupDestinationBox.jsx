@@ -6,12 +6,16 @@ import Image from "next/image";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { useState, useEffect } from "react";
-import { retrieveSpecificDriver } from "../services/blockchain";
+import {
+  retrieveSpecificDriver,
+  addData,
+  getData,
+} from "../services/blockchain";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
-import { Button } from "@mui/material";
+import { Button, Rating } from "@mui/material";
 
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 const LIBRARIES = ["places"];
@@ -25,6 +29,8 @@ const PickupDestinationBox = () => {
     duration,
     drivers,
     pickup,
+    dropoff,
+    setAccept,
   } = useContext(DriveGoContext);
   const [alertOpen, setAlertOpen] = useState(false);
   const [details, setDetails] = useState(null);
@@ -74,6 +80,31 @@ const PickupDestinationBox = () => {
       }
     }
   }, [drivers]);
+
+  useEffect(() => {
+    let count = 0;
+    if (window.ethereum.selectedAddress !== null) {
+      const interval = setInterval(async () => {
+        const data = await getData();
+        console.log(data);
+        if (data?.length === 0) setAccept(null);
+        for (let i = 0; i < data.length; i++) {
+          if (
+            data[i].accept &&
+            data[i].userAddress.toLowerCase() ===
+              window.ethereum.selectedAddress.toLowerCase()
+          ) {
+            count++;
+            setAccept(data[i]);
+            break;
+          }
+        }
+        if (count === 0) setAccept(null);
+      }, 3000);
+
+      return () => clearInterval(interval);
+    }
+  }, []);
 
   async function calculateRoute(location) {
     const directionsService = new google.maps.DirectionsService();
@@ -140,97 +171,122 @@ const PickupDestinationBox = () => {
         </Snackbar>
         {duration && drivers && locations.length == drivers[0].length && (
           <div style={{ color: "black" }} className="ride-select-box">
-            {drivers[0].map((car, index) => (
-              <Accordion
-                square={true}
-                disableGutters
-                className="accordian"
-                sx={{ borderRadius: "13px", boxShadow: "none" }}
-                key={car}
-                expanded={expanded === `panel${index}`}
-                onChange={handleChange(`panel${index}`, car)}
-              >
-                <AccordionSummary sx={{ height: "80px" }}>
-                  <Image
-                    className="box"
-                    src={
-                      drivers[2][index] === "Premium"
-                        ? "/premium.png"
-                        : "/classic.png"
-                    }
-                    priority="high"
-                    alt=""
-                    height={90}
-                    width={90}
-                    style={{
-                      position: "relative",
-                      right: "8px",
-                    }}
-                  />
-                  <div
-                    style={{
-                      height: "40px",
-                      position: "relative",
-                      top: "32px",
-                    }}
-                  >
-                    <div style={{ fontWeight: "bold" }}>
-                      {drivers[2][index]}
-                    </div>
-                    <div style={{ color: "#205295" }}>
-                      {locations[index]} away
-                    </div>
-                  </div>
-                  <div
-                    style={{
-                      height: "30px",
-                      position: "absolute",
-                      top: "29px",
-                      right: "0px",
-                      marginRight: "7px",
-                    }}
-                  >
+            {drivers[0].map((car, index) => {
+              const costPerKilometer =
+                drivers[2][index] === "Premium" ? 22 : 16;
+              const distanceInKilometers = Number(newDistance) / 100000;
+              const rideCost = (
+                costPerKilometer * distanceInKilometers
+              ).toFixed(5);
+              return (
+                <Accordion
+                  square={true}
+                  disableGutters
+                  className="accordian"
+                  sx={{ borderRadius: "13px", boxShadow: "none" }}
+                  key={car}
+                  expanded={expanded === `panel${index}`}
+                  onChange={handleChange(`panel${index}`, car)}
+                >
+                  <AccordionSummary sx={{ height: "80px" }}>
+                    <Image
+                      className="box"
+                      src={
+                        drivers[2][index] === "Premium"
+                          ? "/premium.png"
+                          : "/classic.png"
+                      }
+                      priority="high"
+                      alt=""
+                      height={90}
+                      width={90}
+                      style={{
+                        position: "relative",
+                        right: "8px",
+                      }}
+                    />
                     <div
                       style={{
-                        float: "left",
-                        paddingTop: "6.5px",
+                        height: "40px",
                         position: "relative",
-                        left: "13px",
+                        top: "32px",
                       }}
                     >
-                      {(
-                        ((drivers[2][index] === "Premium" ? 22 : 16) *
-                          Number(newDistance)) /
-                        100000
-                      ).toFixed(5)}
+                      <div style={{ fontWeight: "bold" }}>
+                        {drivers[2][index]}
+                      </div>
+                      <div style={{ color: "#205295" }}>
+                        {locations[index]} away
+                      </div>
                     </div>
-                    <Image src="/eth.png" alt="" height={25} width={40} />
-                  </div>
-                </AccordionSummary>
-                <AccordionDetails>
-                  {details && (
-                    <Typography sx={{ fontFamily: "Josefin Sans" }}>
-                      Driver : {details[0]} <br />
-                      Phone : {details[1]} <br />
-                      Vehicle Model : {details[7]} <br />
-                      Vehicle Number : {details[4]} <br />
-                      <Button
-                        variant="contained"
-                        color="error"
-                        sx={{
-                          borderRadius: "12px",
+                    <div
+                      style={{
+                        height: "30px",
+                        position: "absolute",
+                        top: "29px",
+                        right: "0px",
+                        marginRight: "7px",
+                      }}
+                    >
+                      <div
+                        style={{
+                          float: "left",
+                          paddingTop: "6.5px",
                           position: "relative",
-                          left: "110px",
-                          top: "3px",
+                          left: "13px",
                         }}
                       >
-                        Book Ride
-                      </Button>
-                    </Typography>
-                  )}
-                </AccordionDetails>
-              </Accordion>
-            ))}
+                        {rideCost}
+                      </div>
+                      <Image src="/eth.png" alt="" height={25} width={40} />
+                    </div>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    {details && (
+                      <Typography sx={{ fontFamily: "Josefin Sans" }}>
+                        Driver : {details[0]} <br />
+                        Phone : {details[1]} <br />
+                        Vehicle Model : {details[7]} <br />
+                        Vehicle Number : {details[4]} <br />
+                        Rating :
+                        <Rating
+                          name="read-only"
+                          value={parseInt(details[9]._hex)}
+                          readOnly
+                          size="small"
+                          sx={{
+                            position: "relative",
+                            left: "5px",
+                            top: "4px",
+                          }}
+                        />
+                        <br />
+                        <Button
+                          variant="contained"
+                          color="error"
+                          sx={{
+                            borderRadius: "12px",
+                            position: "relative",
+                            left: "113px",
+                            top: "3px",
+                          }}
+                          onClick={async () => {
+                            await addData({
+                              driverAddr: car,
+                              pickup,
+                              dropoff,
+                              amount: rideCost,
+                            });
+                          }}
+                        >
+                          Book Ride
+                        </Button>
+                      </Typography>
+                    )}
+                  </AccordionDetails>
+                </Accordion>
+              );
+            })}
           </div>
         )}
       </div>

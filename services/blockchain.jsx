@@ -63,6 +63,49 @@ const getAllDriverDetails = async () => {
   }
 };
 
+const addData = async ({ driverAddr, pickup, dropoff, amount }) => {
+  try {
+    if (!ethereum) return alert("No Wallet Found");
+    const contract = await getEtheriumContract();
+    await contract.addData(driverAddr, pickup, dropoff, amount);
+  } catch (error) {
+    reportError(error);
+  }
+};
+
+const getData = async () => {
+  try {
+    if (!ethereum) return alert("No Wallet Found");
+    const contract = await getEtheriumContract();
+    const data = await contract.getData();
+    return data;
+  } catch (error) {
+    reportError(error);
+  }
+};
+
+const removeData = async () => {
+  try {
+    if (!ethereum) return alert("No Wallet Found");
+    const contract = await getEtheriumContract();
+    await contract.removeData();
+  } catch (error) {
+    reportError(error);
+  }
+};
+
+const payDriver = async ({ driverAddr, userAddr, amount, rating }) => {
+  try {
+    if (!ethereum) return alert("No Wallet Found");
+    const contract = await getEtheriumContract();
+    await contract.payDriver(driverAddr, userAddr, rating, {
+      value: ethers.utils.parseEther(amount),
+    });
+  } catch (error) {
+    reportError(error);
+  }
+};
+
 const reportError = (error) => {
   console.log(error.message);
 };
@@ -72,4 +115,8 @@ export {
   retrieveUserInformation,
   retrieveSpecificDriver,
   getAllDriverDetails,
+  addData,
+  removeData,
+  getData,
+  payDriver,
 };

@@ -2,12 +2,6 @@ import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
-  const [showDrawer, setShowDrawer] = useState(false);
-
-  const toggleDrawer = () => {
-    setShowDrawer(!showDrawer);
-  };
-
   return (
     <nav id="navbar">
       <a className="navlogo">DriveGo</a>

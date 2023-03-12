@@ -93,7 +93,17 @@ const Wallet = ({ userBal, user }) => {
           {transactions.map((index) => {
             return index.value * 1e-18 > 0 ? (
               <Card
-                sx={{ maxWidth: 360, maxHeight: 430 }}
+                sx={{
+                  maxWidth: 360,
+                  maxHeight: 430,
+                  fontFamily: "Josefin Sans",
+                  paddingBottom: "0px",
+                  marginBottom: "35px",
+                  fontWeight: "bold",
+                  background: "#ECF2FF",
+                  boxShadow: "none",
+                  borderRadius: "20px",
+                }}
                 key={index.blockNumber}
               >
                 <CardActionArea>
@@ -104,16 +114,19 @@ const Wallet = ({ userBal, user }) => {
                     alt="Ether Coin"
                   />
                   <CardContent>
-                    <Typography variant="h5" className="typing">
+                    <Typography
+                      variant="h5"
+                      sx={{ fontWeight: "bold", marginBottom: "10px" }}
+                    >
                       Value : {Math.floor(index.value * 1e-18 * 10000) / 10000}{" "}
                       ETH
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                       <b>
                         From: {index.from}
-                        <Divider className="divider" />
+                        <Divider sx={{ margin: "10px" }} />
                         To: {index.to}
-                        <Divider className="divider" />
+                        <Divider sx={{ margin: "10px" }} />
                         Date/Time: {index.blockTimestamp}
                       </b>
                     </Typography>

@@ -1,11 +1,10 @@
 import Navbar from "../components/Navbar";
 import Map from "../components/Map";
 import PickupDestinationBox from "../components/PickupDestinationBox";
-import { getSession } from "next-auth/react";
+import { getSession, signOut } from "next-auth/react";
+import { DriveGoContext } from "../context/DriveGoContext";
 import Head from "next/head";
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -14,11 +13,12 @@ import DialogContent from "@mui/material/DialogContent";
 import {
   setUserInformation,
   retrieveUserInformation,
+  payDriver,
 } from "../services/blockchain";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Divider } from "@mui/material";
-// import { BottomSheet } from "react-spring-bottom-sheet";
-// import "react-spring-bottom-sheet/dist/style.css";
+import { Divider, Rating } from "@mui/material";
+import { BottomSheet } from "react-spring-bottom-sheet";
+import "react-spring-bottom-sheet/dist/style.css";
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
@@ -38,12 +38,13 @@ export async function getServerSideProps(context) {
 }
 
 function Rider() {
-  const [alertOpen, setAlertOpen] = useState(false);
+  const { accept } = useContext(DriveGoContext);
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [aadharNumber, setAadharNumber] = useState("");
   const [bottomSheet, setBottomSheet] = useState(false);
+  const [value, setValue] = useState(2);
 
   useEffect(() => {
     async function retrieve() {
@@ -51,45 +52,28 @@ function Rider() {
       if (details) if (!details[0]) setOpen(true);
     }
 
-    if (window.ethereum) {
-      // Listen for changes to the selected address
-      window.ethereum.on("accountsChanged", function (accounts) {
-        if (accounts.length > 0) {
-          retrieve();
-        } else {
-          setAlertOpen(true);
-        }
-      });
-
-      // Check if the wallet is already connected
-      if (window.ethereum.selectedAddress) {
+    window.ethereum.on("accountsChanged", function (accounts) {
+      if (accounts.length > 0) {
         retrieve();
       } else {
-        setAlertOpen(true);
+        signOut({ redirect: "/signin" });
       }
+    });
+
+    if (window.ethereum.selectedAddress !== null) {
+      retrieve();
     } else {
-      // MetaMask is not installed
-      setAlertOpen(true);
+      signOut({ redirect: "/signin" });
     }
   }, []);
 
+  useEffect(() => {
+    if (accept === null) setBottomSheet(false);
+    else setBottomSheet(true);
+  }, [accept]);
+
   return (
     <div>
-      <Snackbar
-        open={alertOpen}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-        style={{ marginTop: "40px" }}
-      >
-        <Alert
-          severity="error"
-          sx={{ width: "100%", fontWeight: "bold", fontFamily: "Josefin Sans" }}
-          onClose={() => {
-            setAlertOpen(false);
-          }}
-        >
-          Connect To Metamask Wallet !!!
-        </Alert>
-      </Snackbar>
       <Dialog
         open={open}
         onClose={async () => {
@@ -100,7 +84,10 @@ function Rider() {
         }}
       >
         <DialogTitle
-          sx={{ fontFamily: "Josefin Sans", paddingTop: "24px" }}
+          sx={{
+            fontFamily: "Josefin Sans",
+            paddingTop: "24px",
+          }}
           variant="h4"
         >
           User Details
@@ -176,16 +163,71 @@ function Rider() {
       </Head>
       <Navbar />
       <PickupDestinationBox />
-      {/* <button onClick={() => setBottomSheet(true)}>Open bottom sheet</button>
-      <BottomSheet
-        style={{ color: "black" }}
-        open={bottomSheet}
-        onDismiss={() => {
-          setBottomSheet(false);
-        }}
-      >
-        <h1 style={{ margin: "20px" }}>Ongoing Rides</h1>
-      </BottomSheet> */}
+      <BottomSheet style={{ color: "black" }} open={bottomSheet}>
+        <div style={{ margin: "20px" }}>
+          <h1>Ongoing Rides</h1>
+          {accept !== null ? (
+            <div
+              style={{
+                borderRadius: "10px",
+                background: "#efefee",
+                padding: "5px",
+                paddingLeft: "10px",
+                fontWeight: "bold",
+              }}
+            >
+              <p style={{ margin: "7px" }}>
+                Driver : {accept.driverAddress.slice(0, 7)}......
+                {accept.driverAddress.slice(35)}
+              </p>
+              <p style={{ margin: "7px" }}>PickUp : {accept.pickup}</p>
+              <p style={{ margin: "7px" }}>DropOff : {accept.dropoff}</p>
+              <p style={{ margin: "7px" }}>Amount : {accept.amount} ETH</p>
+              <p style={{ margin: "7px" }}>Rate Driver : </p>
+              <Rating
+                name="simple-controlled"
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                }}
+                size="small"
+                sx={{ position: "absolute", left: "132px", bottom: "70px" }}
+              />
+              <div style={{ textAlign: "center" }}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    display: "inline-block",
+                    background: "#000",
+                    color: "white",
+                    fontSize: "12px",
+                    fontFamily: "Josefin Sans",
+                    borderRadius: "10px",
+                    height: "32px",
+                    boxShadow: "none",
+                    marginBottom: "5px",
+                    "&:hover": {
+                      background: "#000",
+                      boxShadow: "none",
+                      color: "white",
+                    },
+                  }}
+                  onClick={async () => {
+                    await payDriver({
+                      driverAddr: accept.driverAddress,
+                      userAddr: accept.userAddress,
+                      amount: accept.amount,
+                      rating: value,
+                    });
+                  }}
+                >
+                  Pay Ride
+                </Button>
+              </div>
+            </div>
+          ) : null}
+        </div>
+      </BottomSheet>
     </div>
   );
 }
