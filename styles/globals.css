@@ -317,10 +317,10 @@
       #profile{
         position: absolute;
         left: 360px;
-        top: 85px;
+        top: 70px;
         background: #AEE2FF;
         width: 510px;
-        height: 575px;
+        height: 540px;
         border-radius: 20px;
         padding: 20px;
       }
@@ -403,6 +403,30 @@
         left: 70px;
         color: black;
         }
+
+        .logout {
+          background-color: white;
+          border-radius: 10px;
+          border-width: 0;
+          width: 120px;
+          position: relative;
+          bottom: 20px;
+          color: #333333;
+          cursor: pointer;
+          font-family: "Josefin Sans";
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 20px;
+          margin: 0;
+          margin-left: 15px;
+          padding: 10px;
+          padding-top: 12px;
+          text-align: center;
+          transition: all 200ms;
+          vertical-align: baseline;
+          white-space: nowrap;
+          touch-action: manipulation;
+          }
     }
 
     .profile_element h3{
@@ -678,6 +702,67 @@
     transform: translate(-50%, -50%);
     }
 
+    @media (max-width: 1366px) and (max-height: 768px){
+      .tripHeading{
+        color: black;
+        position: absolute;
+        font-family: "Josefin Sans";
+        left: 359px;
+        top: 60px;
+        }
+
+      .monthBox {
+        position: relative;
+        right: 50px;
+        bottom: 67px;
+      }
+        .select_month{
+        cursor: pointer;
+        font-family: "Josefin Sans";
+        font-size: 19px;
+        position: absolute;
+        color: black;
+        top: 150px;
+        background: #efefee;
+        transition: all 300ms;
+        height: 40px;
+        width: 90px;
+        border-radius: 25px;
+        }
+    
+        #active {
+        background: black;
+        color: white;
+        }
+    
+        .select_month:hover{
+        background: #cecece;
+        }
+    
+        .select_month p{
+        font-size: 16px;
+        text-align: center;
+        position: relative;
+        bottom: 3px;
+        }
+    
+        #tripBox{
+        position: absolute;
+        font-family:"Josefin Sans" ;
+        color: rgb(255, 255, 255);
+        background: #ceeaf7;
+        top: 60%;
+        left:708px;
+        width: 700px;
+        margin-top: 24px;
+        height: 400px;
+        border-radius: 20px;
+        padding: 25px;
+        padding-left: 40px;
+        padding-top: 5px;
+        }
+    }
+
     /*                        ABOUT PAGE                     */
 
     .about {
@@ -696,7 +781,7 @@
     top: 190px;
     width: 40vw;
     background: rgba(255, 255, 255, 0.902);
-    height: 57vh;
+    height: fit-content;
     color: #000;
     padding: 50px;
     }
@@ -724,6 +809,20 @@
     font-size: 19px;
     }
 
+    @media (max-width: 1366px) and (max-height: 768px) {
+      
+    .inner-container{
+      border-radius: 10px;
+      position: absolute;
+      left: 410px;
+      top: 100px;
+      width: 40vw;
+      background: rgba(255, 255, 255, 0.902);
+      height: fit-content;
+      color: #000;
+      padding: 50px;
+      }
+    }
     /*                        ABOUT PAGE                     */
 
     :root {

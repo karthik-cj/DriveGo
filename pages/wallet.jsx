@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import ProfileElement from "../components/ProfileElement";
-import { getSession } from "next-auth/react";
+import { getSession, signOut } from "next-auth/react";
 import Head from "next/head";
 import Card from "@mui/material/Card";
 import { useState, useEffect } from "react";
@@ -46,23 +46,28 @@ const Wallet = ({ userBal, user }) => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const transactionResult = await fetch(
-        `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/moralis/transactions`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            address: user.address,
-          }),
-        }
-      );
+      const transactionResult = await fetch(`/api/moralis/transactions`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          address: user.address,
+        }),
+      });
       const Transactions = await transactionResult.json();
       setTransactions(Transactions);
       setLoading(false);
     };
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    window.ethereum.on("accountsChanged", function (accounts) {
+      if (accounts.length === 0) {
+        signOut({ redirect: "/signin" });
+      }
+    });
   }, []);
 
   return (

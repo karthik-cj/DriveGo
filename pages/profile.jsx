@@ -55,6 +55,14 @@ const Profile = ({ user }) => {
     }
   }, []);
 
+  useEffect(() => {
+    window.ethereum.on("accountsChanged", function (accounts) {
+      if (accounts.length === 0) {
+        signOut({ redirect: "/signin" });
+      }
+    });
+  }, []);
+
   return (
     <div>
       <Snackbar
