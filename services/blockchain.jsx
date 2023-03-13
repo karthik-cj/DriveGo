@@ -106,6 +106,17 @@ const payDriver = async ({ driverAddr, userAddr, amount, rating }) => {
   }
 };
 
+const displayRideHistory = async () => {
+  try {
+    if (!ethereum) return alert("No Wallet Found");
+    const contract = await getEtheriumContract();
+    const data = await contract.displayRideHistory();
+    return data;
+  } catch (error) {
+    reportError(error);
+  }
+};
+
 const reportError = (error) => {
   console.log(error.message);
 };
@@ -119,4 +130,5 @@ export {
   removeData,
   getData,
   payDriver,
+  displayRideHistory,
 };
