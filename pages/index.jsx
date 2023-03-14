@@ -182,7 +182,7 @@ function Rider() {
               </p>
               <p style={{ margin: "7px" }}>PickUp : {accept.pickup}</p>
               <p style={{ margin: "7px" }}>DropOff : {accept.dropoff}</p>
-              <p style={{ margin: "7px" }}>Amount : {accept.amount} ETH</p>
+              <p style={{ margin: "7px" }}>Amount : {accept.amount} MATIC</p>
               <p style={{ margin: "7px" }}>Rate Driver : </p>
               <Rating
                 name="simple-controlled"

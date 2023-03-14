@@ -174,7 +174,7 @@ const PickupDestinationBox = () => {
             {drivers[0].map((car, index) => {
               const costPerKilometer =
                 drivers[2][index] === "Premium" ? 22 : 16;
-              const distanceInKilometers = Number(newDistance) / 100000;
+              const distanceInKilometers = Number(newDistance) / 100;
               const rideCost = (
                 costPerKilometer * distanceInKilometers
               ).toFixed(5);
@@ -238,7 +238,17 @@ const PickupDestinationBox = () => {
                       >
                         {rideCost}
                       </div>
-                      <Image src="/eth.png" alt="" height={25} width={40} />
+                      <Image
+                        src="/eth.png"
+                        alt=""
+                        height={20}
+                        width={20}
+                        style={{
+                          marginLeft: "15px",
+                          position: "relative",
+                          top: "3px",
+                        }}
+                      />
                     </div>
                   </AccordionSummary>
                   <AccordionDetails>
