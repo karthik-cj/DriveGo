@@ -104,9 +104,9 @@ const Trips = ({ user }) => {
         </div>
       </div>
 
-      <div id="tripBox">
+      <div>
         {trips !== null ? (
-          <div>
+          <div id="tripBox">
             {trips.map((trip, index) => {
               if (trip.userAddress === user.address) {
                 return (
@@ -118,7 +118,7 @@ const Trips = ({ user }) => {
                       fontFamily: "Josefin Sans",
                       paddingBottom: "0px",
                       paddingLeft: "20px",
-                      marginBottom: "35px",
+                      marginBottom: "25px",
                       fontWeight: "bold",
                       background: "#ECF2FF",
                       boxShadow: "none",
