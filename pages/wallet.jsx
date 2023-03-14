@@ -85,7 +85,7 @@ const Wallet = ({ userBal, user }) => {
         </h1>
         <button
           className="addFund"
-          onClick={() => window.open("https://goerlifaucet.com/")}
+          onClick={() => window.open("https://mumbaifaucet.com/")}
         >
           <span>&#43;</span> Add Fund
         </button>
@@ -128,13 +128,13 @@ const Wallet = ({ userBal, user }) => {
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     <b>
-                      From: {index.from.slice(0, 7)}......
+                      From : {index.from.slice(0, 7)}......
                       {index.from.slice(35)}
                       <Divider sx={{ margin: "10px" }} />
-                      To: {index.to.slice(0, 7)}......
+                      To : {index.to.slice(0, 7)}......
                       {index.to.slice(35)}
                       <Divider sx={{ margin: "10px" }} />
-                      Date/Time: {index.blockTimestamp.slice(0, -31)}
+                      Date : {index.blockTimestamp.slice(0, -31)}
                     </b>
                   </Typography>
                 </CardContent>

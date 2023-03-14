@@ -132,7 +132,8 @@ a {
   background: rgba(0, 0, 0);
   height: 51px;
   width: 100vw;
-  position: relative;
+  position: fixed;
+  top: 0;
   z-index: 1;
 }
 
@@ -162,7 +163,7 @@ a {
 
 .pickup_destination_box {
   position: absolute;
-  margin-top: 1.4vh;
+  margin-top: 8.5vh;
   left: 16vh;
   width: 418px;
   height: 90%;
@@ -354,7 +355,7 @@ a {
 }
 
 .profile_element {
-  position: absolute;
+  position: fixed;
   left: 120px;
   top: 10px;
   margin-top: 100px;
@@ -363,7 +364,7 @@ a {
 
 @media (max-width: 1366px) and (max-height: 768px) {
   .profile_element {
-    position: absolute;
+    position: fixed;
     left: 70px;
     color: black;
   }

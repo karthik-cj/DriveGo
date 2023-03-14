@@ -1,6 +1,3 @@
-import { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
-
 const Navbar = () => {
   return (
     <nav id="navbar">
