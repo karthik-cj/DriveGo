@@ -82,9 +82,9 @@ const PickupDestinationBox = () => {
   }, [drivers]);
 
   useEffect(() => {
-    let count = 0;
     if (window.ethereum.selectedAddress !== null) {
       const interval = setInterval(async () => {
+        let count = 0;
         const data = await getData();
         console.log(data);
         if (data?.length === 0) setAccept(null);
