@@ -7,7 +7,7 @@ import { retrieveUserInformation } from "../services/blockchain";
 import { CircularProgress } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import { removeData } from "../services/blockchain";
+// import { removeData } from "../services/blockchain";
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
@@ -110,7 +110,7 @@ const Profile = ({ user }) => {
             <button
               className="logout"
               onClick={async () => {
-                await removeData();
+                // await removeData();
                 signOut({ redirect: "/signin" });
               }}
             >
