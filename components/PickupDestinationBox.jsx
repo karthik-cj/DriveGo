@@ -15,7 +15,7 @@ import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
-import { Button, Rating } from "@mui/material";
+import { Button, Rating, Backdrop, CircularProgress } from "@mui/material";
 
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 const LIBRARIES = ["places"];
@@ -36,6 +36,7 @@ const PickupDestinationBox = () => {
   const [details, setDetails] = useState(null);
   const [expanded, setExpanded] = useState("");
   const [locations, setLocations] = useState([]);
+  const [backDrop, setBackDrop] = useState(false);
   let newDistance = distance.slice(0, -3);
 
   const pickupText = useRef("");
@@ -281,12 +282,14 @@ const PickupDestinationBox = () => {
                             top: "3px",
                           }}
                           onClick={async () => {
+                            setBackDrop(true);
                             await addData({
                               driverAddr: car,
                               pickup,
                               dropoff,
                               amount: rideCost,
                             });
+                            setBackDrop(false);
                           }}
                         >
                           Book Ride
@@ -300,6 +303,9 @@ const PickupDestinationBox = () => {
           </div>
         )}
       </div>
+      <Backdrop sx={{ color: "#fff", zIndex: 2000 }} open={backDrop}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </LoadScript>
   );
 };

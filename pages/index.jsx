@@ -16,7 +16,10 @@ import {
   payDriver,
 } from "../services/blockchain";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Divider, Rating } from "@mui/material";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Divider, Rating, Snackbar, Alert } from "@mui/material";
+import axios from "axios";
 import { BottomSheet } from "react-spring-bottom-sheet";
 import "react-spring-bottom-sheet/dist/style.css";
 
@@ -45,6 +48,8 @@ function Rider() {
   const [aadharNumber, setAadharNumber] = useState("");
   const [bottomSheet, setBottomSheet] = useState(false);
   const [value, setValue] = useState(2);
+  const [connectInternet, setConnectInternet] = useState(false);
+  const [backDrop, setBackDrop] = useState(false);
 
   useEffect(() => {
     async function retrieve() {
@@ -72,14 +77,77 @@ function Rider() {
     else setBottomSheet(true);
   }, [accept]);
 
+  async function AadharValidation() {
+    const encodedParams = new URLSearchParams();
+    encodedParams.set("captchaValue", "TK6HXq");
+    encodedParams.set("captchaTxnId", "58p5MxkQrNFp");
+    encodedParams.set("method", "uidvalidate");
+    encodedParams.set("clientid", "111");
+    encodedParams.set("txn_id", "4545533");
+    encodedParams.set("consent", "Y");
+    encodedParams.set("uidnumber", aadharNumber);
+
+    const options = {
+      method: "POST",
+      url: "https://aadhaar-number-verification.p.rapidapi.com/Uidverifywebsvcv1/Uidverify",
+      headers: {
+        "content-type": "application/x-www-form-urlencoded",
+        "X-RapidAPI-Key": "8fe67656dcmsh04eb6781511e373p1850ecjsn834287a91eb1",
+        "X-RapidAPI-Host": "aadhaar-number-verification.p.rapidapi.com",
+      },
+      data: encodedParams,
+    };
+
+    try {
+      const uuid = await axios.request(options);
+      console.log(uuid.data);
+      if (uuid.data.Succeeded) {
+        await setUserInformation({
+          name,
+          phone,
+          aadhar: aadharNumber,
+        });
+        setOpen(false);
+        setBackDrop(false);
+      } else {
+        setBackDrop(false);
+        setConnectInternet(true);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div>
+      <Backdrop sx={{ color: "#fff", zIndex: 2000 }} open={backDrop}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+      <Snackbar
+        open={connectInternet}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Alert
+          severity="error"
+          sx={{
+            width: "100%",
+            fontWeight: "bold",
+            fontFamily: "Josefin Sans",
+          }}
+          onClose={() => {
+            setConnectInternet(false);
+          }}
+        >
+          Invalid Aadhar Number
+        </Alert>
+      </Snackbar>
       <Dialog
         open={open}
+        sx={{ color: "yellow" }}
         onClose={async () => {
           if (phone && name && aadharNumber) {
-            await setUserInformation({ name, phone, aadhar: aadharNumber });
-            setOpen(false);
+            setBackDrop(true);
+            await AadharValidation();
           }
         }}
       >
@@ -142,12 +210,13 @@ function Rider() {
               paddingTop: "10px",
               width: "100px",
             }}
-            color="warning"
+            color="primary"
+            size="small"
             variant="contained"
             onClick={async () => {
               if (phone && name && aadharNumber) {
-                await setUserInformation({ name, phone, aadhar: aadharNumber });
-                setOpen(false);
+                setBackDrop(true);
+                await AadharValidation();
               }
             }}
           >
@@ -180,8 +249,12 @@ function Rider() {
                 Driver : {accept.driverAddress.slice(0, 7)}......
                 {accept.driverAddress.slice(35)}
               </p>
-              <p style={{ margin: "7px" }}>PickUp : {accept.pickup}</p>
-              <p style={{ margin: "7px" }}>DropOff : {accept.dropoff}</p>
+              <p style={{ margin: "7px" }}>
+                PickUp : {accept.pickup.slice(0, -7)}
+              </p>
+              <p style={{ margin: "7px" }}>
+                DropOff : {accept.dropoff.slice(0, -7)}
+              </p>
               <p style={{ margin: "7px" }}>Amount : {accept.amount} MATIC</p>
               <p style={{ margin: "7px" }}>Rate Driver : </p>
               <Rating
