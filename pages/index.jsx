@@ -92,7 +92,7 @@ function Rider() {
       url: "https://aadhaar-number-verification.p.rapidapi.com/Uidverifywebsvcv1/Uidverify",
       headers: {
         "content-type": "application/x-www-form-urlencoded",
-        "X-RapidAPI-Key": "8fe67656dcmsh04eb6781511e373p1850ecjsn834287a91eb1",
+        "X-RapidAPI-Key": "e2409ea443msh48957783c55ed73p153f98jsnc42e6cdbaf59",
         "X-RapidAPI-Host": "aadhaar-number-verification.p.rapidapi.com",
       },
       data: encodedParams,

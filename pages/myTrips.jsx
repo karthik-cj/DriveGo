@@ -131,8 +131,8 @@ const Trips = ({ user }) => {
                         Driver : {trip.driverAddress.slice(0, 7)}......
                         {trip.driverAddress.slice(35)}
                       </p>
-                      <p>Pickup : {trip.pickup}</p>
-                      <p>DropOff : {trip.dropoff}</p>
+                      <p>Pickup : {trip.pickup.slice(0, -7)}</p>
+                      <p>DropOff : {trip.dropoff.slice(0, -7)}</p>
                       <p>Amount : {trip.amount} MATIC</p>
                       <p>
                         Date :{" "}
