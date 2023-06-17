@@ -7,6 +7,8 @@ import { retrieveUserInformation } from "../services/blockchain";
 import { CircularProgress } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import BigNumber from "bignumber.js";
+import Rating from "@mui/material/Rating";
 // import { removeData } from "../services/blockchain";
 
 export async function getServerSideProps(context) {
@@ -62,7 +64,7 @@ const Profile = ({ user }) => {
       }
     });
   }, []);
-
+  console.log(userInfo);
   return (
     <div>
       <Snackbar
@@ -93,7 +95,19 @@ const Profile = ({ user }) => {
             <div className="image">
               <img src="/login.png" width={45} />
             </div>
+            <p style={{ position: "absolute", left: "250px", top: "47px" }}>
+              Rating -{" "}
+              <Rating
+                name="read-only"
+                value={new BigNumber(userInfo[3]._hex).toNumber()}
+                readOnly
+                size="small"
+                style={{ position: "relative", top: "3px" }}
+              />
+            </p>
+
             <h1 className="profile_name">{userInfo[0]}</h1>
+
             <h3 className="profile_no">+91 {userInfo[1]}</h3>
             <br />
             <br />

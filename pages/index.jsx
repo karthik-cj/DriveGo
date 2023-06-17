@@ -6,6 +6,7 @@ import { DriveGoContext } from "../context/DriveGoContext";
 import Head from "next/head";
 import { useState, useEffect, useContext } from "react";
 import Button from "@mui/material/Button";
+import BigNumber from "bignumber.js";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -49,12 +50,23 @@ function Rider() {
   const [bottomSheet, setBottomSheet] = useState(false);
   const [value, setValue] = useState(2);
   const [connectInternet, setConnectInternet] = useState(false);
+  const [userDenied, setUserDenied] = useState(false);
   const [backDrop, setBackDrop] = useState(false);
 
   useEffect(() => {
     async function retrieve() {
       let details = await retrieveUserInformation();
-      if (details) if (!details[0]) setOpen(true);
+      if (details)
+        if (!details[0]) {
+          setOpen(true);
+        } else {
+          if (new BigNumber(details[3]._hex).toNumber() <= 2) {
+            setUserDenied(true);
+            setTimeout(() => {
+              signOut({ redirect: "/signin" });
+            }, 2000);
+          }
+        }
     }
 
     window.ethereum.on("accountsChanged", function (accounts) {
@@ -139,6 +151,24 @@ function Rider() {
           }}
         >
           Invalid Aadhar Number
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={userDenied}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Alert
+          severity="error"
+          sx={{
+            width: "100%",
+            fontWeight: "bold",
+            fontFamily: "Josefin Sans",
+          }}
+          onClose={() => {
+            setUserDenied(false);
+          }}
+        >
+          Access Denied - Low Rating
         </Alert>
       </Snackbar>
       <Dialog
@@ -292,6 +322,7 @@ function Rider() {
                       amount: accept.amount,
                       rating: value,
                     });
+                    window.location.reload();
                   }}
                 >
                   Pay Ride
