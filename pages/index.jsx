@@ -150,7 +150,7 @@ function Rider() {
             setConnectInternet(false);
           }}
         >
-          Invalid Aadhar Number
+          Invalid Aadhar Or Phone Number
         </Alert>
       </Snackbar>
       <Snackbar
@@ -175,10 +175,10 @@ function Rider() {
         open={open}
         sx={{ color: "yellow" }}
         onClose={async () => {
-          if (phone && name && aadharNumber) {
+          if (phone.length === 10 && name && aadharNumber) {
             setBackDrop(true);
             await AadharValidation();
-          }
+          } else setConnectInternet(true);
         }}
       >
         <DialogTitle
@@ -247,7 +247,7 @@ function Rider() {
               if (phone && name && aadharNumber) {
                 setBackDrop(true);
                 await AadharValidation();
-              }
+              } else setConnectInternet(true);
             }}
           >
             Submit
