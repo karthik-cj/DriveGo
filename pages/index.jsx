@@ -104,7 +104,7 @@ function Rider() {
       url: "https://aadhaar-number-verification.p.rapidapi.com/Uidverifywebsvcv1/Uidverify",
       headers: {
         "content-type": "application/x-www-form-urlencoded",
-        "X-RapidAPI-Key": "e2409ea443msh48957783c55ed73p153f98jsnc42e6cdbaf59",
+        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
         "X-RapidAPI-Host": "aadhaar-number-verification.p.rapidapi.com",
       },
       data: encodedParams,
@@ -244,7 +244,7 @@ function Rider() {
             size="small"
             variant="contained"
             onClick={async () => {
-              if (phone && name && aadharNumber) {
+              if (phone.length === 10 && name && aadharNumber) {
                 setBackDrop(true);
                 await AadharValidation();
               } else setConnectInternet(true);
